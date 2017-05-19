@@ -1,0 +1,18 @@
+.archive_01 {
+    .wrap {
+        overflow: auto;
+        .list-item {
+            transition: 1s;
+        }
+    }
+
+    div.view-mode {
+        background: #ffffff;
+        border-radius: 5px;
+        transition: 0.5s;
+        box-shadow: 1.5px 1.5px 1.5px 1.5px #e2e2e2;
+        &:hover{
+          //box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.2) inset;
+        }
+    }
+}
