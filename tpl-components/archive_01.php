@@ -5,10 +5,17 @@
             <div class ="view-mode container">
                 <div class ="row">
                     <div class ="field-title col-12 p-3">
-                        <h3><?php the_title(); ?></h3>
+                        <h3>
+                          <a href ="<?php the_permalink() ?>">
+                            <?php the_title(); ?>
+                          </a>
+                        </h3>
+
                     </div>
                     <div class ="field-thumbnail col-12 p-0">
+                      <a href ="<?php the_permalink() ?>">
                         <?php  the_post_thumbnail('thumb-archive_01');?>
+                      </a>
                     </div>
                     <div class ="field col-12 p-2 d-flex justify-content-start align-items-center">
                       <div class ="avatar">
