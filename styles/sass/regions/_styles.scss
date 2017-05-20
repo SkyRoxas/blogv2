@@ -1,20 +1,21 @@
-#header{
-  background: #26446F;
-  color: #ffffff;
-  text-align: center;
-  a{
+#header {
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    background: #26446F;
     color: #ffffff;
-  }
+    text-align: center;
+    a {
+        color: #ffffff;
+    }
 }
 
 #page {
     background: #EEEEEE;
 }
 
-#content{
-  background: rgba(0,0,0,0)!important;
+#content {
+    background: rgba(0,0,0,0)!important;
 }
 
-#banner{
-  
-}
+#banner {}
