@@ -13,4 +13,10 @@
   </div>
 </div>
 
+<div id="bottom">
+    <!--<?php dynamic_sidebar('bonze-widget') ?>-->
+    <?php get_template_part('tpl-components/categories-block') ?>
+</div>
+
+
 <?php  get_footer(); ?>

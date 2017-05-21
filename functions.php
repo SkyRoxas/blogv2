@@ -2,7 +2,7 @@
 
 add_theme_support( 'post-thumbnails');
 
-//add_image_size( 'custom-size', 300, 300, true );
+
 
 function add_custom_sizes() {
     add_image_size( 'thumb-archive_01', 400, 250, array( 'center', 'center') );

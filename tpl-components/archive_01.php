@@ -6,7 +6,8 @@
                 <div class ="row">
                     <div class ="field-title col-12 p-3">
                         <h3>
-                          <a href ="<?php the_permalink() ?>">
+                          <?php the_category()?>
+                          <a class = "article-link" href ="<?php the_permalink() ?>">
                             <?php the_title(); ?>
                           </a>
                         </h3>
