@@ -1,5 +1,5 @@
 <div class ="archive_01 container">
-    <div class ='wrap row flex-column masonry'>
+    <div class ='wrap row  masonry'>
       <?php while(have_posts()) : the_post(); ?>
         <div class ="list-item col-12 col-lg-4 col-md-6 col-sm-6 p-2">
             <div class ="view-mode container">
