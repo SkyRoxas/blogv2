@@ -12,7 +12,11 @@
             border-radius: 5px;
             transition: 0.2s;
             box-shadow: 1.5px 1.5px 1.5px 1.5px #e2e2e2;
-
+            div.field-title{
+              h3{
+                line-height: 2em;
+              }
+            }
             ul.post-categories{
               float:left;
               margin: 0px;
@@ -21,9 +25,11 @@
               li{
                 list-style-type: none;
                 a{
-                  border: 1px solid;
-                  padding: 0px 2px;
+                  border-radius: 2px;
+                  padding: 2px 4px;
                   margin-right: 5px;
+                  background: #26446F;
+                  color: #ffffff;
                 }
               }
             }
