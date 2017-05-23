@@ -26,15 +26,17 @@
     }
   }
 
-  $(document).ready(function () {
-    masonryHeight()
-  })
+  // $(document).ready(function () {
+  //   masonryHeight()
+  // })
+  //
+  // $(window).resize(function () {
+  //   setTimeout(function () {
+  //     masonryHeight()
+  //   }, 1000)
+  // })
 
-  $(window).resize(function () {
-    setTimeout(function () {
-      masonryHeight()
-    }, 1000)
-  })
+
   // imageHeight js
   function imageHeight () {
     if ($('.imageblock').height() < 500) {
