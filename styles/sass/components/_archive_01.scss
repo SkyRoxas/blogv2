@@ -2,7 +2,7 @@
 
     @include media-breakpoint-up(xs) {
         div.wrap {
-            overflow: auto;
+            //overflow: auto;
             .list-item {
                 transition: 1s;
             }
