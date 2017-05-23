@@ -7,6 +7,9 @@
       <?php get_template_part('tpl-components/breadcrumb') ?>
       <article>
         <?php the_content(); ?>
+        <?php if (comments_open() || get_comments_number()) {
+          comments_template();
+        } ?>
       </article>
   </div>
 </div>

@@ -28,13 +28,12 @@
         >ul.categories-list{
           >li.categories-item{
             background: #ffffff;
-            transition: 0.4s;
 
             a.categories-link{
               display: block;
               background: #26446F;
               position: relative;
-
+              transition: 0.4s;
               div{
                 position: absolute;
                 font-size: 1.5em;
@@ -46,11 +45,10 @@
               img{
                 opacity: 0;
               }
-
-            }
-            &:hover{
-              transform: scale(1.2);
-              z-index: 1;
+              &:hover{
+                transform: scale(1.2);
+                z-index: 1;
+              }
             }
           }
         }
