@@ -27,7 +27,9 @@
   }
 
   $(document).ready(function () {
-    masonryHeight()
+    setTimeout(function () {
+      masonryHeight()
+    }, 600)
   })
 
   $(window).resize(function () {
