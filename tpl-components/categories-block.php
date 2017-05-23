@@ -10,13 +10,13 @@
 
           foreach ( $categories as $category ) {
             echo '<li><a href="' . get_category_link( $category->term_id ) . '" >' . $category->name . '</a>';
-            echo '<div class ="container-fluid"><ul class ="row justify-content-center">';
+            echo '<div class ="container-fluid">';
             $sub_categories = get_categories(array(
                     'orderby' => 'name',
                     'show_count' => true,
                     'parent' => $category->term_id,
                   ));
-
+            echo "<ul class ='row justify-content-center'>";
             foreach ( $sub_categories as $sub_category ) {
                       echo '<li class ="col-3" style ="display:block">
                               <a href ="' . get_category_link( $sub_category->term_id ) . '" style ="display:block;background:rgba(0,0,0,0.2)">
