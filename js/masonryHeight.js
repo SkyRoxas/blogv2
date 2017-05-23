@@ -26,16 +26,15 @@
     }
   }
 
-  // $(document).ready(function () {
-  //   masonryHeight()
-  // })
-  //
-  // $(window).resize(function () {
-  //   setTimeout(function () {
-  //     masonryHeight()
-  //   }, 1000)
-  // })
+  $(document).ready(function () {
+    masonryHeight()
+  })
 
+  $(window).resize(function () {
+    setTimeout(function () {
+      masonryHeight()
+    }, 1000)
+  })
 
   // imageHeight js
   function imageHeight () {
