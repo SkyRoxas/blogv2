@@ -1,5 +1,6 @@
 <?php
 
+//thumbails
 add_theme_support( 'post-thumbnails');
 
 function add_custom_sizes() {
@@ -7,14 +8,29 @@ function add_custom_sizes() {
 }
 add_action('after_setup_theme','add_custom_sizes');
 
+//end for thumbails
 
-function add_scripts() {
-  wp_enqueue_script('masonryHeight', get_template_directory_uri() . '/js/masonryHeight.js',array('jquery'),'1.7');
-  wp_enqueue_script('dragcover', get_template_directory_uri() . '/js/imageHeight.js');
-  wp_enqueue_script('dragscroll', get_template_directory_uri() . '/js/dragscroll.js');
+
+//add javascrit scripts
+function add_jquery(){
+  wp_enqueue_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js');
 }
 
-  add_action( 'wp_enqueue_scripts', 'add_scripts' );
+add_action( 'wp_enqueue_scripts', 'add_jquery' );
+
+function add_custom_scripts() {
+  wp_enqueue_script('masonryHeight', get_template_directory_uri() . '/js/masonryHeight.js');
+  wp_enqueue_script('dragcover', get_template_directory_uri() . '/js/imageHeight.js');
+  wp_enqueue_script('dragscroll', get_template_directory_uri() . '/js/dragscroll.js');
+  wp_enqueue_script('ajaxLoop', get_template_directory_uri() . '/js/ajaxLoop.js');
+}
+
+add_action( 'wp_enqueue_scripts', 'add_custom_scripts' );
+
+//end javascrit scripts
+
+
+
 
 /**
 * Register our sidebars and widgetized areas.
