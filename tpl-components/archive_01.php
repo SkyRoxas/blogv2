@@ -30,6 +30,7 @@
             </div>
         </div>
       <?php endwhile; ?>
+      <div class ="ajax-bottom">ajax-bottom</div>
     </div>
 
     <div class ="dragImg">
