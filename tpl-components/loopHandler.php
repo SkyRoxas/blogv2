@@ -16,28 +16,18 @@ $args = array(
   // 'orderby'                  => $orderby,
   // 'post_status'              => $post_status,
   // 'ignore_sticky_posts'      => true,
-
 );
 
 $the_query = new WP_Query( $args );
 ?>
 
-<?php if (($the_query->have_posts())): ?>
-  <?php while(have_posts()) : the_post(); ?>
-  <?php endwhile ?>
-<?php endif; ?>
 
 
+<?php while($the_query->have_posts()) : $the_query->the_post(); ?>
+  <div><?php the_title(); ?></div>
+<?php endwhile; ?>
 
-<?php
-// The Loop
-// if ( $the_query->have_posts() ) {
-//     while ( $the_query->have_posts() ) {
-//         $the_query->the_post();
-//         echo '<li>' . get_the_title() . '</li>';
-//     }
-// }
-?>
+
 
 
 
