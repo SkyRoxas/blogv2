@@ -22,7 +22,7 @@ function add_custom_scripts() {
   wp_enqueue_script('masonryHeight', get_template_directory_uri() . '/js/masonryHeight.js');
   wp_enqueue_script('dragcover', get_template_directory_uri() . '/js/imageHeight.js');
   wp_enqueue_script('dragscroll', get_template_directory_uri() . '/js/dragscroll.js');
-  wp_enqueue_script('ajaxLoop', get_template_directory_uri() . '/js/ajaxLoop.js');
+  wp_enqueue_script('ajaxLoop', get_template_directory_uri() . '/js/mobileTaxonomy.js');
 }
 
 add_action( 'wp_enqueue_scripts', 'add_custom_scripts' );

@@ -1,58 +1,70 @@
-.categories-block{
-  ul{
-    margin: 0px;
-    padding: 0px;
-  }
-  li{
-    display: block;
-  }
-  >ul.categories-list{
-    >li.categories-item{
-      >a.categories-link{
-        position: relative;
-        padding: 15px;
-        font-size: 1.5em;
-        display: flex;
-        align-items: center;
-        &:before{
-          position: absolute;
-          content:"";
-          display: block;
-          width: 5px;
-          height: 55%;
-          background: #26446F;
-          left: 0px;
-        }
-      }
-      >div.wrap{
-        >ul.categories-list{
-          >li.categories-item{
-            background: #ffffff;
-
-            a.categories-link{
-              display: block;
-              background: #26446F;
-              position: relative;
-              transition: 0.4s;
-              div{
-                position: absolute;
-                font-size: 1.5em;
-                color: #ffffff;
-                width: 90%;
-                height: 90%;
-                @include absolute-align(center,center);
-              }
-              img{
-                opacity: 0;
-              }
-              &:hover{
-                transform: scale(1.2);
-                z-index: 1;
-              }
-            }
-          }
-        }
-      }
+.categories-block {
+    ul {
+        margin: 0;
+        padding: 0;
     }
-  }
+
+    li {
+        display: block;
+    }
+
+    > ul.categories-list {
+        > li.categories-item {
+            > a.categories-link {
+                position: relative;
+                display: flex;
+                padding: 15px;
+                font-size: 1.5em;
+                align-items: center;
+
+                &:before {
+                    position: absolute;
+                    left: 0;
+                    display: block;
+                    width: 5px;
+                    height: 55%;
+                    content: "";
+                    background: #26446F;
+                }
+            }
+
+            > div.wrap {
+                > ul.categories-list {
+                    > li.categories-item {
+                        background: #ffffff;
+
+                        a.categories-link {
+                            position: relative;
+                            display: block;
+                            transition: 0.4s;
+                            background: #26446F;
+
+                            div {
+                                position: absolute;
+                                width: 90%;
+                                height: 90%;
+                                color: #ffffff;
+                                font-size: 1.5em;
+                                @include absolute-align(center,center);
+                            }
+
+                            img {
+                                opacity: 0;
+                            }
+
+                            &:hover {
+                                z-index: 1;
+                                transform: scale(1.2);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.categories-block.mobile-hide {
+    display: none;
+    width: 100%;
 }

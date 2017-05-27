@@ -31,5 +31,6 @@
   </div>
   <div class ='region-wrapper'>
     <?php wp_nav_menu( array( 'theme_location' => 'header-menu','container_class' => 'header-menu' ) ); ?>
+    <div class="container"><?php get_template_part('tpl-components/header-nav') ?></div>
   </div>
 </header>

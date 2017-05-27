@@ -4,7 +4,6 @@
     <?php
           $categories = get_categories( array(
             'orderby' => 'name',
-            'show_count' => true,
             'parent' => 0
           ));
 
@@ -14,7 +13,6 @@
             echo '<div class ="wrap">';
             $sub_categories = get_categories(array(
                     'orderby' => 'name',
-                    'show_count' => true,
                     'parent' => $category->term_id,
                   ));
             echo "<ul class ='categories-list row'>";
@@ -23,9 +21,11 @@
                               <a class ="categories-link" href ="' . get_category_link( $sub_category->term_id ) . '">
                                 <div class ="d-flex justify-content-center align-items-center">' . $sub_category->name . '</div>
                                 <img src = "' . get_bloginfo('template_url') . '/images/square.jpg">
+                                <div class="count">('.$sub_category->category_count.')</div>
                               </a>
                             </li>';
                   }
+
             echo "</ul></div>";
             echo "</li>";
           }
