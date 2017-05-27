@@ -13,7 +13,7 @@ jQuery(function ($) {
       beforeSend: function () {
       },
       success: function (data) {
-        alert('success')
+        //alert('success')
         console.log(data)
       },
       error: function (jqXHR, textStatus, errorThrown) {
