@@ -18,6 +18,11 @@
   <title><?php wp_title(); ?></title>
 </head>
 <script src="https://use.typekit.net/znw8cer.js"></script>
+
+<script type="text/javascript">
+var ajax_template_url = '<?php echo bloginfo('template_url'); ?>';
+</script>
+
 <script>try{Typekit.load({ async: true });}catch(e){}</script>
 <body class ="<?php is_home() ? print'front' : print 'not-front'; ?>">
 

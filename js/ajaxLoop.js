@@ -1,7 +1,6 @@
 // ajax
 jQuery(function ($) {
   var page = 2
-  var loading = true
   var $window = $(window)
   var $content = $('.ajax-bottom')
   var load_posts = function () {
@@ -9,7 +8,7 @@ jQuery(function ($) {
       type: 'GET',
       data: {numPosts: 1, pageNumber: page},
       dataType: 'html',
-      url: '../wp-content/themes/blogv2/tpl-components/loopHandler.php',
+      url: ajax_template_url + '/tpl-components/loopHandler.php',
       beforeSend: function () {
       },
       success: function (data) {
@@ -25,10 +24,9 @@ jQuery(function ($) {
 
   $(document).ready(function () {
     $window.scroll(function () {
-      var content_offset = $content.offset()
-      var content_position = $content.position()
-      if ($(window).scrollTop() > $content.offset().top - $(window).height() && $content.parent().scrollLeft() > content_position.left - $content.parent().width()) {
-        loading = true
+      // var content_offset = $content.offset()
+      // var content_position = $content.position()
+      if ($(window).scrollTop() > $content.offset().top - $(window).height() && $content.parent().scrollLeft() > $content.position().left - $content.parent().width()) {
         page++
         load_posts()
       }
@@ -36,7 +34,6 @@ jQuery(function ($) {
 
     $content.parent().scroll(function () {
       if ($content.parent().scrollLeft() > $content.position().left - $content.parent().width()) {
-        loading = true
         page++
         load_posts()
       }

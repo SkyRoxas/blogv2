@@ -32,6 +32,20 @@ add_action( 'wp_enqueue_scripts', 'add_custom_scripts' );
 
 
 
+function folder_contents() {
+
+$folderPath = $_POST['path'] ;
+$files = array_diff(scandir($path), array('.', '..'));
+print_r($files);
+return $files;
+
+die();
+}
+
+add_action('wp_ajax_folder_contents', 'folder_contents');
+add_action('wp_ajax_nopriv_folder_contents', 'folder_contents');
+
+
 
 /**
 * Register our sidebars and widgetized areas.
