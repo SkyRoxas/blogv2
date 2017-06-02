@@ -3,7 +3,7 @@
   function masonryHeight () {
     var masonry = $('.masonry')
     if (masonry.children().innerWidth() !== masonry.width()) {
-      masonry.css('max-height', '760px')
+      masonry.css('max-height', '920px')
       masonry.parent().css({
         'position': 'relative',
         'overflow': 'hidden',
@@ -30,6 +30,10 @@
     setTimeout(function () {
       masonryHeight()
     }, 600)
+  })
+
+  $(document).ajaxComplete(function(){
+    masonryHeight()
   })
 
   $(window).resize(function () {

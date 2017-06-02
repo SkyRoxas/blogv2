@@ -33,7 +33,7 @@
       <div class ="ajax-bottom">ajax-bottom</div>
     </div>
 
-    <div class ="dragImg">
-      <img class ="dragImg" src="<?php bloginfo('template_url'); ?>/images/ezgif.com-reverse.gif">
-    </div>
+    <!-- <div class ="dragImg">
+      <img class ="dragImg" src="<?php //bloginfo('template_url'); ?>/images/ezgif.com-reverse.gif">
+    </div> -->
 </div>
