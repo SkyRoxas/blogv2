@@ -24,6 +24,7 @@ function add_custom_scripts() {
   wp_enqueue_script('dragscroll', get_template_directory_uri() . '/js/dragscroll.js');
   wp_enqueue_script('mobileTaxonomy', get_template_directory_uri() . '/js/mobileTaxonomy.js');
   wp_enqueue_script('ajaxLoop', get_template_directory_uri() . '/js/ajaxLoop.js');
+  //wp_enqueue_script('wpAjax', get_template_directory_uri() . '/js/wpAjax.js');
 }
 
 add_action( 'wp_enqueue_scripts', 'add_custom_scripts' );
@@ -96,4 +97,42 @@ class Bonze_Archive_Widget extends WP_Widget {
         ));
     }
 }
+
+
+add_action( 'wp_ajax_ajaxLoop', 'ajax_ajaxLoop' );
+
+function ajax_ajaxLoop() {
+    // Handle request then generate response using WP_Ajax_Response
+
+    $page = (isset($_GET['pageNumber'])) ? $_GET['pageNumber'] : 0;
+
+
+    $the_query = new WP_Query(
+      array(
+        'post_type'                => 'post',
+        'paged'                    => $page,
+        //'category_name' => 'drupal',
+        // 'posts_per_page'           => $posts_per_page,
+        // 'offset'                   => $offset + ($posts_per_page*$page),
+        // 'order'                    => $order,
+        // 'orderby'                  => $orderby,
+        // 'post_status'              => $post_status,
+        // 'ignore_sticky_posts'      => true,
+      ));
+
+
+      while ($the_query->have_posts()) {
+
+        $the_query->the_post();
+
+        get_template_part('tpl-components/loopHandler');
+
+        wp_reset_postdata();
+
+      }
+    // Don't forget to stop execution afterward.
+    wp_die();
+}
+
+
 ?>

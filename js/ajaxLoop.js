@@ -1,15 +1,18 @@
 // ajax
 jQuery(function ($) {
-  var page = 2
   var $window = $(window)
+  var page = 2
   var $content = $('.ajax-bottom')
 
   var load_posts = function () {
     $.ajax({
       type: 'GET',
-      data: {numPosts: 1, pageNumber: page},
+      data: {
+        'action': 'ajaxLoop',
+        'pageNumber': page
+      },
       dataType: 'html',
-      url: ajax_template_url + '/tpl-components/loopHandler.php',
+      url: ajaxurl,
       beforeSend: function () {
       },
       success: function (data) {
