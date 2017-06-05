@@ -2,19 +2,20 @@
 jQuery(function ($) {
   var $window = $(window)
   var $content = $('.ajax-button')
-  
+
   $content.append('<div class ="buttonValue">' + $buttonValue + '</div>')
 
+  console.log($catId)
   var load_posts = function () {
     $.ajax({
       type: 'GET',
+      url: ajaxurl,
       data: {
-        'action': 'ajaxLoop',
+        action: 'ajaxLoop',
         'pageNumber': $pageNumber,
         'catId': $catId
       },
       dataType: 'html',
-      url: ajaxurl,
       beforeSend: function () {
         $content.find('.buttonValue').html('<img src ="' + wp_template_url + '/images/loading.gif" width ="95">')
       },

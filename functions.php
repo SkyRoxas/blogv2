@@ -141,5 +141,6 @@ function ajax_ajaxLoop() {
 }
 
 add_action( 'wp_ajax_ajaxLoop', 'ajax_ajaxLoop' );
+add_action( 'wp_ajax_nopriv_ajaxLoop', 'ajax_ajaxLoop' );
 
 ?>
