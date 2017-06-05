@@ -113,7 +113,8 @@ function ajax_ajaxLoop() {
         'cat'                      => $catId,
         'paged'                    => $page,
         'orderby'                  => 'post_date',
-        'order' => 'DESC'
+        'order'                    => 'DESC',
+        'posts_per_page'           => -1
       )
     );
 
