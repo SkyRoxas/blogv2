@@ -9,7 +9,7 @@ jQuery(function ($) {
       type: 'GET',
       data: {
         'action': 'ajaxLoop',
-        'pageNumber': $page,
+        'pageNumber': $pageNumber,
         'catId': $catId
       },
       dataType: 'html',
@@ -30,14 +30,14 @@ jQuery(function ($) {
   $(document).ready(function () {
     $window.scroll(function () {
       if ($(window).scrollTop() > $content.offset().top - $(window).height() && $content.parent().scrollLeft() > $content.position().left - $content.parent().width()) {
-        page++
+        $pageNumber++
         load_posts()
       }
     })
 
     $content.parent().scroll(function () {
       if ($content.parent().scrollLeft() > $content.position().left - $content.parent().width()) {
-        page++
+        $pageNumber++
         load_posts()
       }
     })

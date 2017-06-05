@@ -34,7 +34,7 @@
         <div>ajax-button</div>
           <script>
             var $catId = '<?php echo get_cat_ID( single_term_title("", false) ); ?>';
-            console.log($catId);
+            var $pageNumber = 2;
           </script>
       </div>
     </div>

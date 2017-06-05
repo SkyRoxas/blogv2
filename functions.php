@@ -99,7 +99,7 @@ class Bonze_Archive_Widget extends WP_Widget {
 }
 
 
-add_action( 'wp_ajax_ajaxLoop', 'ajax_ajaxLoop' );
+
 
 function ajax_ajaxLoop() {
     // Handle request then generate response using WP_Ajax_Response
@@ -113,29 +113,25 @@ function ajax_ajaxLoop() {
         'post_type'                => 'post',
         'cat'                      => $catId,
         'paged'                    => $page,
-        //'category_name' => 'drupal',
-        // 'posts_per_page'           => $posts_per_page,
-        // 'offset'                   => $offset + ($posts_per_page*$page),
-        // 'order'                    => $order,
-        // 'orderby'                  => $orderby,
-        // 'post_status'              => $post_status,
-        // 'ignore_sticky_posts'      => true,
-      ));
+      )
+    );
 
-
+    if ( $the_query->have_posts() ) {
       while ($the_query->have_posts()) {
-
         $the_query->the_post();
 
         get_template_part('tpl-components/loopHandler');
 
-        wp_reset_postdata();
-
       }
+      wp_reset_postdata();
+    } else {
+      echo "no data";
+    }
 
     // Don't forget to stop execution afterward.
     wp_die();
 }
 
+add_action( 'wp_ajax_ajaxLoop', 'ajax_ajaxLoop' );
 
 ?>
