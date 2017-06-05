@@ -5,7 +5,6 @@ jQuery(function ($) {
 
   $content.append('<div class ="buttonValue">' + $buttonValue + '</div>')
 
-  console.log($catId)
   var load_posts = function () {
     $.ajax({
       type: 'GET',
@@ -32,22 +31,32 @@ jQuery(function ($) {
     })
   }
 
+  function scrollTimer ($scrollItem, $fun) {
+    var timer
+
+    $scrollItem.scroll(function () {
+      if (timer) {
+        window.clearTimeout(timer)
+      }
+
+      timer = window.setTimeout(function () {
+        $fun()
+      }, 100)
+    })
+  }
+
   $(document).ready(function () {
-    $window.scroll(function () {
-      if ($(window).scrollTop() > $content.offset().top - $(window).height() && $content.parent().scrollLeft() > $content.position().left - $content.parent().width()) {
-        setTimeout(function () {
-          $pageNumber++
-          load_posts()
-        }, 1000)
+    scrollTimer($window, function () {
+      if ($window.scrollTop() > $content.offset().top - $window.height() && $content.parent().scrollLeft() > $content.position().left - $content.parent().width()) {
+        $pageNumber++
+        load_posts()
       }
     })
 
-    $content.parent().scroll(function () {
+    scrollTimer($content.parent(), function () {
       if ($content.parent().scrollLeft() > $content.position().left - $content.parent().width()) {
-        setTimeout(function () {
-          $pageNumber++
-          load_posts()
-        }, 2000)
+        $pageNumber++
+        load_posts()
       }
     })
   })
