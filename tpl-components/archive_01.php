@@ -30,7 +30,13 @@
             </div>
         </div>
       <?php endwhile; ?>
-      <div class ="ajax-bottom">ajax-bottom</div>
+      <div class ="ajax-button">
+        <div>ajax-button</div>
+          <script>
+            var $catId = '<?php echo get_cat_ID( single_term_title("", false) ); ?>';
+            console.log($catId);
+          </script>
+      </div>
     </div>
 
     <!-- <div class ="dragImg">

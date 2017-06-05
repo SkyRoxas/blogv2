@@ -1,15 +1,16 @@
 // ajax
 jQuery(function ($) {
   var $window = $(window)
-  var page = 2
-  var $content = $('.ajax-bottom')
+  var $page = 2
+  var $content = $('.ajax-button')
 
   var load_posts = function () {
     $.ajax({
       type: 'GET',
       data: {
         'action': 'ajaxLoop',
-        'pageNumber': page
+        'pageNumber': $page,
+        'catId': $catId
       },
       dataType: 'html',
       url: ajaxurl,

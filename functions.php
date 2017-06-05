@@ -105,11 +105,13 @@ function ajax_ajaxLoop() {
     // Handle request then generate response using WP_Ajax_Response
 
     $page = (isset($_GET['pageNumber'])) ? $_GET['pageNumber'] : 0;
+    $catId = (isset($_GET['catId'])) ? $_GET['catId'] : 0;
 
 
     $the_query = new WP_Query(
       array(
         'post_type'                => 'post',
+        'cat'                      => $catId,
         'paged'                    => $page,
         //'category_name' => 'drupal',
         // 'posts_per_page'           => $posts_per_page,
@@ -130,6 +132,7 @@ function ajax_ajaxLoop() {
         wp_reset_postdata();
 
       }
+
     // Don't forget to stop execution afterward.
     wp_die();
 }
