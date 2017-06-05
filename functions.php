@@ -107,12 +107,12 @@ function ajax_ajaxLoop() {
     $page = (isset($_GET['pageNumber'])) ? $_GET['pageNumber'] : 0;
     $catId = (isset($_GET['catId'])) ? $_GET['catId'] : 0;
 
-
     $the_query = new WP_Query(
       array(
         'post_type'                => 'post',
         'cat'                      => $catId,
         'paged'                    => $page,
+        'orderby'                  => 'date'
       )
     );
 
@@ -125,7 +125,15 @@ function ajax_ajaxLoop() {
       }
       wp_reset_postdata();
     } else {
-      echo "no data";
+      echo "
+            <script>
+              (function($){
+                $(document).ready(function(){
+                  $('.ajax-button .buttonValue').remove();
+                })
+              })(jQuery)
+            </script>
+           ";
     }
 
     // Don't forget to stop execution afterward.

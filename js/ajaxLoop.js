@@ -1,8 +1,9 @@
 // ajax
 jQuery(function ($) {
   var $window = $(window)
-  var $page = 2
   var $content = $('.ajax-button')
+  
+  $content.append('<div class ="buttonValue">' + $buttonValue + '</div>')
 
   var load_posts = function () {
     $.ajax({
@@ -15,11 +16,14 @@ jQuery(function ($) {
       dataType: 'html',
       url: ajaxurl,
       beforeSend: function () {
+        $content.find('.buttonValue').html('<img src ="' + wp_template_url + '/images/loading.gif" width ="95">')
       },
       success: function (data) {
-        // alert('success')
+        setTimeout(function () {
+          $content.find('.buttonValue').html($buttonValue)
+          $content.before(data)
+        }, 2000)
         // console.log(data)
-        $content.before(data)
       },
       error: function (jqXHR, textStatus, errorThrown) {
         console(jqXHR + ' :: ' + textStatus + ' :: ' + errorThrown)
@@ -30,15 +34,19 @@ jQuery(function ($) {
   $(document).ready(function () {
     $window.scroll(function () {
       if ($(window).scrollTop() > $content.offset().top - $(window).height() && $content.parent().scrollLeft() > $content.position().left - $content.parent().width()) {
-        $pageNumber++
-        load_posts()
+        setTimeout(function () {
+          $pageNumber++
+          load_posts()
+        }, 1000)
       }
     })
 
     $content.parent().scroll(function () {
       if ($content.parent().scrollLeft() > $content.position().left - $content.parent().width()) {
-        $pageNumber++
-        load_posts()
+        setTimeout(function () {
+          $pageNumber++
+          load_posts()
+        }, 2000)
       }
     })
   })

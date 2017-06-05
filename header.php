@@ -20,7 +20,7 @@
 <script src="https://use.typekit.net/znw8cer.js"></script>
 
 <script type="text/javascript">
-var ajax_template_url = '<?php echo bloginfo('template_url'); ?>';
+var wp_template_url = '<?php echo bloginfo('template_url'); ?>';
 </script>
 
 <script>try{Typekit.load({ async: true });}catch(e){}</script>
