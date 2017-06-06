@@ -3,7 +3,9 @@ jQuery(function ($) {
   var $window = $(window)
   var $content = $('.ajax-button')
 
-  $content.append('<div class ="buttonValue">' + $buttonValue + '</div>')
+  $(document).ready(function () {
+    $content.append('<div class ="buttonValue">' + $buttonValue + '</div>')
+  })
 
   var load_posts = function () {
     $.ajax({
