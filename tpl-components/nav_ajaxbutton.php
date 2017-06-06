@@ -1,5 +1,8 @@
 <div class ="ajax-button">
     <?php
+      $ajaxLoading_key;
+      $ajaxLoading_value;
+
       if( is_category() ){
         $ajaxLoading_key = 'cat';
         $ajaxLoading_value = get_cat_ID( single_term_title("", false) );
