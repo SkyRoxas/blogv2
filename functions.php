@@ -116,7 +116,9 @@ function ajax_ajaxLoop() {
       'order'                    => 'DESC',
     );
 
-    $arg[$queryKey] = $queryValue;
+    if($queryKey){
+        $arg[$queryKey] = $queryValue;
+    }
 
     $the_query = new WP_Query($arg);
 
