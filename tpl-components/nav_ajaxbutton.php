@@ -21,7 +21,5 @@
        var $pageNumber = 1;
        var $ajaxLoading_key = '<?php echo $ajaxLoading_key; ?>';
        var $ajaxLoading_value = '<?php echo $ajaxLoading_value; ?>';
-
-       console.log($ajaxLoading_key,$ajaxLoading_value);
      </script>
 </div>
