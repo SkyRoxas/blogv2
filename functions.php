@@ -105,17 +105,22 @@ function ajax_ajaxLoop() {
     // Handle request then generate response using WP_Ajax_Response
 
     $page = (isset($_GET['pageNumber'])) ? $_GET['pageNumber'] : 0;
-    $catId = (isset($_GET['catId'])) ? $_GET['catId'] : 0;
+    $queryKey = (isset($_GET['queryKey'])) ? $_GET['queryKey'] : 0;
+    $queryValue = (isset($_GET['queryValue'])) ? $_GET['queryValue'] : 0;
 
-    $the_query = new WP_Query(
-      array(
-        'post_type'                => 'post',
-        'cat'                      => $catId,
-        'paged'                    => $page,
-        'orderby'                  => 'date',
-        'order'                    => 'DESC',
-      )
+
+    $arg =array(
+      'post_type'                => 'post',
+      'paged'                    => $page,
+      'orderby'                  => 'date',
+      'order'                    => 'DESC',
     );
+
+    $arg[$queryKey] = $queryValue;
+
+    $the_query = new WP_Query($arg);
+
+
 
     if ( $the_query->have_posts() ) {
       while ($the_query->have_posts()) {

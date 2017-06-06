@@ -12,7 +12,8 @@ jQuery(function ($) {
       data: {
         action: 'ajaxLoop',
         'pageNumber': $pageNumber,
-        'catId': $catId
+        'queryKey': $ajaxLoading_key,
+        'queryValue': $ajaxLoading_value
       },
       dataType: 'html',
       beforeSend: function () {

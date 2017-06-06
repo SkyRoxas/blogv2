@@ -30,14 +30,7 @@
             </div>
         </div>
       <?php endwhile; ?>
-      <div class ="ajax-button col-12 col-lg-4 col-md-6 col-sm-6 d-flex justify-content-center p-2">
-          <script type="text/javascript">
-            var $buttonValue = 'Load More';
-            var $catId = '<?php echo get_cat_ID( single_term_title("", false) ); ?>';
-            var $pageNumber = 1;
-
-          </script>
-      </div>
+      <?php get_template_part('tpl-components/nav_ajaxbutton') ?>
     </div>
 
     <!-- <div class ="dragImg">
