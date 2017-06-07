@@ -3,6 +3,9 @@
 
 <div id ="banner" class ="region">
   <?php get_template_part('tpl-components/imageblock_01') ?>
+  <div class ='page-title'>
+    <div class ="wrap"></div>
+  </div>
 </div>
 
 <div id ="page" class ="region">
