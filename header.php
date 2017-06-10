@@ -39,3 +39,8 @@ var wp_template_url = '<?php echo bloginfo('template_url'); ?>';
     <div class="container"><?php get_template_part('tpl-components/header-nav') ?></div>
   </div>
 </header>
+
+<div id ="banner" class ="region">
+  <?php get_template_part('tpl-components/block--imageblock__01') ?>
+  <?php get_template_part('tpl-components/block--textblock__01') ?>
+</div>

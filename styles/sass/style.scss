@@ -3,26 +3,3 @@
 @import "base/_import";
 @import "components/_import";
 @import "regions/_import";
-
-
-#banner{
-  position: relative;
-}
-.page-title{
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%,-50%);
-  display: block;
-  width: 100%;
-  max-width: 1200px;
-  height: 90%;
-  background: rgba(255,255,255,0.15);
-  div{
-    position: relative;
-    width: 100%;
-    height: 100%;
-    background-image: url('../../images/glassbackground.png');
-    background-size: 100%;
-  }
-}

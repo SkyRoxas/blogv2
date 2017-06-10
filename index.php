@@ -1,13 +1,5 @@
 <?php get_header(); ?>
 
-
-<div id ="banner" class ="region">
-  <?php get_template_part('tpl-components/imageblock_01') ?>
-  <div class ='page-title'>
-    <div class ="wrap"></div>
-  </div>
-</div>
-
 <div id ="page" class ="region">
   <div id = "content" class ="pb-5">
     <?php get_template_part('tpl-components/nav_search') ?>

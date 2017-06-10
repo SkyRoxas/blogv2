@@ -1,12 +1,14 @@
 //archive
-@import "archive_01";
+@import "archive--archive__01";
 
 //imageblock
-@import "imageblock_01";
+@import "block--imageblock__01";
+
+//textblock
+@import "block--textblock__01";
 
 //categories
-@import "categories-block";
-
+@import "categories--listblock";
 
 //nav
-@import "nav_search-block"
+@import "nav--searchblock"
