@@ -2,9 +2,9 @@
   // imageHeight js
   function imageHeight () {
     if ($('.imageHeight-500').height() < 500) {
-      $('#banner').css('height', $('.imageHeight-500').height())
+      $('.imageHeight-500').parent().css('height', $('.imageHeight-500').height())
     } else {
-      $('#banner').css('height', '500')
+      $('.imageHeight-500').parent().css('height', '500')
     }
   }
 

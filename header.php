@@ -28,13 +28,13 @@ var wp_template_url = '<?php echo bloginfo('template_url'); ?>';
 
 
 
-<header id ="header" class ="p-2">
+<header id ="header">
   <!--<img class ="logo" src="<?php bloginfo('template_url'); ?>/images/logo.png">-->
-  <div class ='info-wrapper'>
-    <a class ="name" href="<?php bloginfo("url"); ?>">Bonze</a>
-    <div class = "description">一群棒子的技術 Blog</div>
-  </div>
-  <div class ='region-wrapper'>
+  <div class ='region-wrapper p-2'>
+    <div class ='info-wrapper'>
+      <a class ="name" href="<?php bloginfo("url"); ?>">Bonze</a>
+      <div class = "description">一群棒子的技術 Blog</div>
+    </div>
     <?php wp_nav_menu( array( 'theme_location' => 'header-menu','container_class' => 'header-menu' ) ); ?>
     <div class="container"><?php get_template_part('tpl-components/header-nav') ?></div>
   </div>
