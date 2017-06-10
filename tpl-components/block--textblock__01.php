@@ -1,12 +1,12 @@
 <div class ='block--textblock__01'>
   <div class ="wrap d-flex align-items-center">
-    <div class ="container p-5">
+    <div class ="container p-3">
 
       <!-- web info -->
       <?php if(is_home()): ?>
         <div class ='web-info row flex-nowrap justify-content-center align-items-center p-2'>
           <img id ="logo" src="<?php bloginfo('template_url'); ?>/images/logo.png">
-          <div class ="web-description">
+          <div class ="web-description p-2">
             <h1><a class ="name" href="<?php bloginfo("url"); ?>">Bonze</a></h1>
             <div class = "description">一群棒子的技術 Blog</div>
           </div>
