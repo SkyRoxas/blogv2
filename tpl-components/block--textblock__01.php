@@ -1,10 +1,10 @@
 <div class ='block--textblock__01'>
   <div class ="wrap d-flex align-items-center">
     <div class ="container p-5">
-      
+
       <!-- web info -->
       <?php if(is_home()): ?>
-        <div class ='web-info row justify-content-center align-items-center p-2'>
+        <div class ='web-info row flex-nowrap justify-content-center align-items-center p-2'>
           <img id ="logo" src="<?php bloginfo('template_url'); ?>/images/logo.png">
           <div class ="web-description">
             <h1><a class ="name" href="<?php bloginfo("url"); ?>">Bonze</a></h1>
@@ -15,7 +15,7 @@
 
       <!--avatar list-->
       <div class ="avatar-list">
-        <ul class ="row justify-content-center">
+        <ul class ="row flex-nowrap justify-content-center">
           <?php
           $user_query = new WP_User_Query( array( 'role__not_in' => 'Subscriber' ) );
 
