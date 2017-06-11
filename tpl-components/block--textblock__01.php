@@ -45,8 +45,11 @@
          <?php if ($about_Query->have_posts()):?>
            <?php while ($about_Query->have_posts()):$about_Query->the_post() ?>
              <div class ="field-content">
-               <?php $content = the_content(); ?>
-               <?php echo remove_images($content); ?>
+               <?php
+                  $content = get_the_content();
+                  $content = preg_replace("/<img[^>]+\>/i", "(image) ", $content);
+                  echo $content;
+                ?>
              </div>
            <?php endwhile; ?>
          <?php endif; ?>

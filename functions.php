@@ -151,10 +151,10 @@ function ajax_ajaxLoop() {
 add_action( 'wp_ajax_ajaxLoop', 'ajax_ajaxLoop' );
 add_action( 'wp_ajax_nopriv_ajaxLoop', 'ajax_ajaxLoop' );
 
-function remove_images( $content ) {
-   $postOutput = preg_replace('/<img[^>]+./','', $content);
-   return $postOutput;
-}
-add_filter( 'the_content', 'remove_images', 100 );
+// function remove_images( $content ) {
+//    $postOutput = preg_replace('/<img[^>]+./','', $content);
+//    return $postOutput;
+// }
+//add_filter( 'the_content', 'remove_images', 100 );
 
 ?>
