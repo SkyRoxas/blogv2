@@ -1,9 +1,8 @@
-<div class ='block--textblock__01'>
-  <div class ="wrap d-flex align-items-center">
+<div class ='block--textblock__front block--textblock__01'>
+  <div class ="wrap d-flex justify-content-center align-items-center">
     <div class ="container p-3">
 
       <!-- web info -->
-      <?php if(is_home()): ?>
         <div class ='web-info row flex-nowrap justify-content-center align-items-center p-2'>
           <img id ="logo" src="<?php bloginfo('template_url'); ?>/images/logo.png">
           <div class ="web-description p-2">
@@ -49,10 +48,11 @@
              </div>
            <?php endwhile; ?>
          <?php endif; ?>
+         <?php wp_reset_postdata(); ?>
        </div>
        <!-- end about query-->
 
-       <?php endif; ?>
+
      </div>
   </div>
 </div>

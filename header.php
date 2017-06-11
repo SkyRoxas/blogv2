@@ -42,5 +42,11 @@ var wp_template_url = '<?php echo bloginfo('template_url'); ?>';
 
 <div id ="banner" class ="region">
   <?php get_template_part('tpl-components/block--imageblock__01') ?>
-  <?php get_template_part('tpl-components/block--textblock__01') ?>
+
+  <?php if(is_home()): ?>
+    <?php get_template_part('tpl-components/block--textblock__front') ?>
+  <?php elseif (is_single()):?>
+    <?php get_template_part('tpl-components/block--textblock__single') ?>
+  <?php endif; ?>
+
 </div>
