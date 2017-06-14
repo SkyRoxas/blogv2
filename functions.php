@@ -1,46 +1,83 @@
 <?php
 
 //thumbails
-add_theme_support( 'post-thumbnails');
+add_theme_support('post-thumbnails');
 
-function add_custom_sizes() {
-    add_image_size( 'thumb-archive_01', 400, 250, array( 'center', 'center') );
+function add_custom_sizes()
+{
+    add_image_size('thumb-archive_01', 400, 250, array( 'center', 'center'));
 }
-add_action('after_setup_theme','add_custom_sizes');
+add_action('after_setup_theme', 'add_custom_sizes');
 
 //end for thumbails
 
 
 //add javascrit scripts
-function add_jquery(){
-  wp_enqueue_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js');
+function add_jquery()
+{
+    wp_enqueue_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js');
 }
 
-add_action( 'wp_enqueue_scripts', 'add_jquery' );
+function add_API()
+{
+    wp_enqueue_script('API_Gravatar', get_template_directory_uri() . '/js/API_Gravatar.js');
 
-function add_custom_scripts() {
-  wp_enqueue_script('masonryHeight', get_template_directory_uri() . '/js/masonryHeight.js');
-  wp_enqueue_script('dragcover', get_template_directory_uri() . '/js/imageHeight.js');
-  wp_enqueue_script('dragscroll', get_template_directory_uri() . '/js/dragscroll.js');
-  wp_enqueue_script('mobileTaxonomy', get_template_directory_uri() . '/js/mobileTaxonomy.js');
-  wp_enqueue_script('ajaxLoop', get_template_directory_uri() . '/js/ajaxLoop.js');
-  wp_enqueue_script('header', get_template_directory_uri() . '/js/header.js');
+    $arg =array();
+
+    while ((have_posts())) {
+        the_post();
+
+        array_push($arg, array(
+        'title' => get_the_title(),
+        'mail' => get_the_author_meta('user_email')
+      ));
+    }
+
+    wp_localize_script('API_Gravatar', 'test', $arg);
 }
 
-add_action( 'wp_enqueue_scripts', 'add_custom_scripts' );
+
+
+function add_custom_scripts()
+{
+    wp_enqueue_script('masonryHeight', get_template_directory_uri() . '/js/masonryHeight.js');
+    wp_enqueue_script('dragcover', get_template_directory_uri() . '/js/imageHeight.js');
+    wp_enqueue_script('dragscroll', get_template_directory_uri() . '/js/dragscroll.js');
+    wp_enqueue_script('mobileTaxonomy', get_template_directory_uri() . '/js/mobileTaxonomy.js');
+    wp_enqueue_script('ajaxLoop', get_template_directory_uri() . '/js/ajaxLoop.js');
+    wp_enqueue_script('header', get_template_directory_uri() . '/js/header.js');
+}
+
+add_action('wp_enqueue_scripts', 'add_jquery');
+//add_action('wp_enqueue_scripts', 'add_API');
+add_action('wp_enqueue_scripts', 'add_custom_scripts');
+
 
 //end javascrit scripts
 
 
+function GravatarApi()
+{
+    $mail = md5( strtolower( trim( get_the_author_meta('user_email') ) ) );
 
-function folder_contents() {
+    $str = file_get_contents('https://www.gravatar.com/'.$mail .'.php');
+    $profile = unserialize($str);
+    if (is_array($profile) && isset($profile['entry'])) {
+        echo $profile['entry'][0]['displayName'];
+    }
 
-$folderPath = $_POST['path'] ;
-$files = array_diff(scandir($path), array('.', '..'));
-print_r($files);
-return $files;
+}
 
-die();
+
+
+function folder_contents()
+{
+    $folderPath = $_POST['path'] ;
+    $files = array_diff(scandir($path), array('.', '..'));
+    print_r($files);
+    return $files;
+
+    die();
 }
 
 add_action('wp_ajax_folder_contents', 'folder_contents');
@@ -52,7 +89,8 @@ add_action('wp_ajax_nopriv_folder_contents', 'folder_contents');
 * Register our sidebars and widgetized areas.
 *
 */
-function bonze_widgets_init() {
+function bonze_widgets_init()
+{
     if (function_exists('register_sidebar')) {
         register_sidebar(array(
             'name' => '棒子小工具區塊',
@@ -66,29 +104,34 @@ function bonze_widgets_init() {
     }
 }
 
-add_action( 'widgets_init', 'bonze_widgets_init' );
+add_action('widgets_init', 'bonze_widgets_init');
 
 //註冊bonze分類區塊
-function register_bonze_archive_widget() {
-    register_widget( 'Bonze_Archive_Widget' );
+function register_bonze_archive_widget()
+{
+    register_widget('Bonze_Archive_Widget');
 }
 
-add_action( 'widgets_init', 'register_bonze_archive_widget' );
+add_action('widgets_init', 'register_bonze_archive_widget');
 
-class Bonze_Archive_Widget extends WP_Widget {
-    function __construct() {
+class Bonze_Archive_Widget extends WP_Widget
+{
+    public function __construct()
+    {
         $widget_options = array(
             'classname' => 'bonze_taxonomy_widget',
             'description' => '棒子分類小工具',
         );
-        parent::__construct( 'bonze_taxonomy_widget', '棒子超屌分類', $widget_options );
+        parent::__construct('bonze_taxonomy_widget', '棒子超屌分類', $widget_options);
     }
 
-    public function widget( $args, $instance ) {
+    public function widget($args, $instance)
+    {
         wp_list_categories($args='');
     }
 
-    public function form( $instance ) {
+    public function form($instance)
+    {
         wp_list_categories(array(
             'orderby'=>'modified',
             'order'=>'DESC',
@@ -101,7 +144,8 @@ class Bonze_Archive_Widget extends WP_Widget {
 
 
 
-function ajax_ajaxLoop() {
+function ajax_ajaxLoop()
+{
     // Handle request then generate response using WP_Ajax_Response
 
     $page = (isset($_GET['pageNumber'])) ? $_GET['pageNumber'] : 0;
@@ -116,7 +160,7 @@ function ajax_ajaxLoop() {
       'order'                    => 'DESC',
     );
 
-    if($queryKey){
+    if ($queryKey) {
         $arg[$queryKey] = $queryValue;
     }
 
@@ -124,16 +168,15 @@ function ajax_ajaxLoop() {
 
 
 
-    if ( $the_query->have_posts() ) {
-      while ($the_query->have_posts()) {
-        $the_query->the_post();
+    if ($the_query->have_posts()) {
+        while ($the_query->have_posts()) {
+            $the_query->the_post();
 
-        get_template_part('tpl-components/loopHandler');
-
-      }
-      wp_reset_postdata();
+            get_template_part('tpl-components/loopHandler');
+        }
+        wp_reset_postdata();
     } else {
-      echo "
+        echo "
             <script>
               (function($){
                 $(document).ready(function(){
@@ -148,13 +191,5 @@ function ajax_ajaxLoop() {
     wp_die();
 }
 
-add_action( 'wp_ajax_ajaxLoop', 'ajax_ajaxLoop' );
-add_action( 'wp_ajax_nopriv_ajaxLoop', 'ajax_ajaxLoop' );
-
-// function remove_images( $content ) {
-//    $postOutput = preg_replace('/<img[^>]+./','', $content);
-//    return $postOutput;
-// }
-//add_filter( 'the_content', 'remove_images', 100 );
-
-?>
+add_action('wp_ajax_ajaxLoop', 'ajax_ajaxLoop');
+add_action('wp_ajax_nopriv_ajaxLoop', 'ajax_ajaxLoop');
