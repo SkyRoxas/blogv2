@@ -43,32 +43,47 @@ function GravatarApi($attributes = 'displayName')
     $str = file_get_contents('https://www.gravatar.com/'.$mail .'.php');
     $profile = unserialize($str);
 
-    $data = $profile['entry'][0][$attributes];
 
-    //aboutMe
-    if ($attributes == 'aboutMe') {
-        echo nl2br($data);
-    //urls
-    } elseif ($attributes == 'urls') {
-        if (is_array($profile) && isset($profile['entry'])) {
-            foreach ($data as $key => $val) {
-                $tool;
-                //facebook
-                if (stripos($data[$key]['value'], $tool='facebook')) {
-                    echo '<a class = "'.$tool.'" href ="'.$data[$key]['value'].'">'.$data[$key]['title'].'</a>';
-                //git
-                } elseif (stripos($data[$key]['value'], $tool='git')) {
-                    echo '<a class = "'.$tool.'" href ="'.$data[$key]['value'].'">'.$data[$key]['title'].'</a>';
-                //other
-                } else {
-                    echo '<a class = "'.$tool.'" href ="'.$data[$key]['value'].'">'.$data[$key]['title'].'</a>';
-                }
-            }
-        }
-    } else {
-        if (is_array($profile) && isset($profile['entry'])) {
-            echo $data;
-        }
+    if(isset($profile['entry'][0][$attributes])){
+      $data = $profile['entry'][0][$attributes];
+      //aboutMe
+      if ($attributes == 'aboutMe') {
+          echo nl2br($data);
+      //urls
+      } elseif ($attributes == 'urls') {
+          if (is_array($profile) && isset($profile['entry'])) {
+              foreach ($data as $key => $val) {
+                  $tool;
+                  //facebook
+                  if (stripos($data[$key]['value'], $tool='facebook')) {
+                      echo '<a class = "'.$tool.'" href ="'.$data[$key]['value'].'">'.$data[$key]['title'].'</a>';
+                  //git
+                  } elseif (stripos($data[$key]['value'], $tool='git')) {
+                      echo '<a class = "'.$tool.'" href ="'.$data[$key]['value'].'">'.$data[$key]['title'].'</a>';
+                  //other
+                  } else {
+                      echo '<a class = "'.$tool.'" href ="'.$data[$key]['value'].'">'.$data[$key]['title'].'</a>';
+                  }
+              }
+          }
+      }else {
+        echo $data;
+      }
+    }else {
+      if ($attributes == 'aboutMe') {
+        echo '
+              <a href ="https://zh-tw.gravatar.com/profiles/edit/#about-you">（編輯資料）</a>
+              <br>
+              職稱：棒子工程師
+              <br>
+              學系：棒子技術學院
+              <br><br>
+              關於我：
+              <br>
+              棒一下～ 棒一下～ 快點棒一下!!
+              <br>
+              ';
+      }
     }
 }
 
