@@ -18,25 +18,6 @@ function add_jquery()
     wp_enqueue_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js');
 }
 
-function add_API()
-{
-    wp_enqueue_script('API_Gravatar', get_template_directory_uri() . '/js/API_Gravatar.js');
-
-    $arg =array();
-
-    while ((have_posts())) {
-        the_post();
-
-        array_push($arg, array(
-        'title' => get_the_title(),
-        'mail' => get_the_author_meta('user_email')
-      ));
-    }
-
-    wp_localize_script('API_Gravatar', 'test', $arg);
-}
-
-
 
 function add_custom_scripts()
 {
@@ -49,23 +30,46 @@ function add_custom_scripts()
 }
 
 add_action('wp_enqueue_scripts', 'add_jquery');
-//add_action('wp_enqueue_scripts', 'add_API');
 add_action('wp_enqueue_scripts', 'add_custom_scripts');
 
 
 //end javascrit scripts
 
 
-function GravatarApi()
+function GravatarApi($attributes = 'displayName')
 {
-    $mail = md5( strtolower( trim( get_the_author_meta('user_email') ) ) );
+    $mail = md5(strtolower(trim(get_the_author_meta('user_email'))));
 
     $str = file_get_contents('https://www.gravatar.com/'.$mail .'.php');
     $profile = unserialize($str);
-    if (is_array($profile) && isset($profile['entry'])) {
-        echo $profile['entry'][0]['displayName'];
-    }
 
+    $data = $profile['entry'][0][$attributes];
+
+    //aboutMe
+    if ($attributes == 'aboutMe') {
+        echo nl2br($data);
+    //urls
+    } elseif ($attributes == 'urls') {
+        if (is_array($profile) && isset($profile['entry'])) {
+            foreach ($data as $key => $val) {
+                $tool;
+                //facebook
+                if (stripos($data[$key]['value'], $tool='facebook')) {
+                    echo '<a class = "'.$tool.'" href ="'.$data[$key]['value'].'">'.$data[$key]['title'].'</a>';
+                //git
+                } elseif (stripos($data[$key]['value'], $tool='git')) {
+                    echo '<a class = "'.$tool.'" href ="'.$data[$key]['value'].'">'.$data[$key]['title'].'</a>';
+                //other
+                } else {
+                    echo '<a class = "'.$tool.'" href ="'.$data[$key]['value'].'">'.$data[$key]['title'].'</a>';
+                }
+            }
+        }
+    } else {
+        if (is_array($profile) && isset($profile['entry'])) {
+            echo $data;
+        }
+    }
 }
 
 
