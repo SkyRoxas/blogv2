@@ -1,3 +1,8 @@
+<?php
+wp_enqueue_script('dragscroll');
+wp_enqueue_script('masonryHeight');
+?>
+
 <div class ="archive_01 container">
     <div class ='wrap row flex-lg-column flex-md-column flex-sm-column masonry dragscroll'>
       <?php while (have_posts()) : the_post(); ?>
@@ -32,8 +37,4 @@
       <?php endwhile; ?>
       <?php get_template_part('tpl-components/nav_ajaxbutton') ?>
     </div>
-
-    <!-- <div class ="dragImg">
-      <img class ="dragImg" src="<?php //bloginfo('template_url');?>/images/ezgif.com-reverse.gif">
-    </div> -->
 </div>

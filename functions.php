@@ -21,12 +21,16 @@ function add_jquery()
 
 function add_custom_scripts()
 {
-    wp_enqueue_script('masonryHeight', get_template_directory_uri() . '/js/masonryHeight.js');
-    wp_enqueue_script('dragcover', get_template_directory_uri() . '/js/imageHeight.js');
-    wp_enqueue_script('dragscroll', get_template_directory_uri() . '/js/dragscroll.js');
-    wp_enqueue_script('mobileTaxonomy', get_template_directory_uri() . '/js/mobileTaxonomy.js');
-    wp_enqueue_script('ajaxLoop', get_template_directory_uri() . '/js/ajaxLoop.js');
+    wp_register_script('ajaxLoop', get_template_directory_uri() . '/js/ajaxLoop.js');
+    wp_register_script('imageHeight', get_template_directory_uri() . '/js/imageHeight.js');
+    wp_register_script('dragscroll', get_template_directory_uri() . '/js/dragscroll.js');
+    wp_register_script('masonryHeight', get_template_directory_uri() . '/js/masonryHeight.js');
+
     wp_enqueue_script('header', get_template_directory_uri() . '/js/header.js');
+    wp_enqueue_script('mobileTaxonomy', get_template_directory_uri() . '/js/mobileTaxonomy.js');
+
+
+
 }
 
 add_action('wp_enqueue_scripts', 'add_jquery');
@@ -36,56 +40,6 @@ add_action('wp_enqueue_scripts', 'add_custom_scripts');
 //end javascrit scripts
 
 
-function GravatarApi($attributes = 'displayName')
-{
-    $mail = md5(strtolower(trim(get_the_author_meta('user_email'))));
-
-    $str = file_get_contents('https://www.gravatar.com/'.$mail .'.php');
-    $profile = unserialize($str);
-
-
-    if(isset($profile['entry'][0][$attributes])){
-      $data = $profile['entry'][0][$attributes];
-      //aboutMe
-      if ($attributes == 'aboutMe') {
-          echo nl2br($data);
-      //urls
-      } elseif ($attributes == 'urls') {
-          if (is_array($profile) && isset($profile['entry'])) {
-              foreach ($data as $key => $val) {
-                  $tool;
-                  //facebook
-                  if (stripos($data[$key]['value'], $tool='facebook')) {
-                      echo '<a class = "'.$tool.'" href ="'.$data[$key]['value'].'">'.$data[$key]['title'].'</a>';
-                  //git
-                  } elseif (stripos($data[$key]['value'], $tool='git')) {
-                      echo '<a class = "'.$tool.'" href ="'.$data[$key]['value'].'">'.$data[$key]['title'].'</a>';
-                  //other
-                  } else {
-                      echo '<a class = "'.$tool.'" href ="'.$data[$key]['value'].'">'.$data[$key]['title'].'</a>';
-                  }
-              }
-          }
-      }else {
-        echo $data;
-      }
-    }else {
-      if ($attributes == 'aboutMe') {
-        echo '
-              <a href ="https://zh-tw.gravatar.com/profiles/edit/#about-you">（編輯資料）</a>
-              <br>
-              職稱：棒子工程師
-              <br>
-              學系：棒子技術學院
-              <br><br>
-              關於我：
-              <br>
-              棒一下～ 棒一下～ 快點棒一下!!
-              <br>
-              ';
-      }
-    }
-}
 
 
 
@@ -212,3 +166,55 @@ function ajax_ajaxLoop()
 
 add_action('wp_ajax_ajaxLoop', 'ajax_ajaxLoop');
 add_action('wp_ajax_nopriv_ajaxLoop', 'ajax_ajaxLoop');
+
+
+function GravatarApi($attributes = 'displayName')
+{
+    $mail = md5(strtolower(trim(get_the_author_meta('user_email'))));
+
+    $str = file_get_contents('https://www.gravatar.com/'.$mail .'.php');
+    $profile = unserialize($str);
+
+
+    if (isset($profile['entry'][0][$attributes])) {
+        $data = $profile['entry'][0][$attributes];
+      //aboutMe
+      if ($attributes == 'aboutMe') {
+          echo nl2br($data);
+      //urls
+      } elseif ($attributes == 'urls') {
+          if (is_array($profile) && isset($profile['entry'])) {
+              foreach ($data as $key => $val) {
+                  $tool;
+                  //facebook
+                  if (stripos($data[$key]['value'], $tool='facebook')) {
+                      echo '<a class = "'.$tool.'" href ="'.$data[$key]['value'].'">'.$data[$key]['title'].'</a>';
+                  //git
+                  } elseif (stripos($data[$key]['value'], $tool='git')) {
+                      echo '<a class = "'.$tool.'" href ="'.$data[$key]['value'].'">'.$data[$key]['title'].'</a>';
+                  //other
+                  } else {
+                      echo '<a class = "'.$tool.'" href ="'.$data[$key]['value'].'">'.$data[$key]['title'].'</a>';
+                  }
+              }
+          }
+      } else {
+          echo $data;
+      }
+    } else {
+        if ($attributes == 'aboutMe') {
+            echo '
+              <a href ="https://zh-tw.gravatar.com/profiles/edit/#about-you">（編輯資料）</a>
+              <br>
+              職稱：棒子工程師
+              <br>
+              學系：棒子技術學院
+              <br><br>
+              關於我：
+              <br>
+              棒一下～ 棒一下～ 快點棒一下!!
+              <br>
+              ';
+        }
+    }
+}

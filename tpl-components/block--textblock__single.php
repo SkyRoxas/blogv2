@@ -2,10 +2,10 @@
   <div class ="wrap d-flex justify-content-center align-items-center">
     <div class ="container p-3">
       <div class ='wrap'>
-        <h1><?php the_title(); ?></h1>
         <div><?php the_time('Y-m-j'); ?></div>
+        <h1 class ="fontSizeAuto"><?php the_title(); ?></h1>
       </div>
-      <div class ="row pt-5 pb-2">
+      <div class ="row pt-lg-5 pb-2">
         <div class ="wrap col-2 pl-3 pr-3">
           <div><?php echo get_avatar(get_the_author_meta('ID'), '140'); ?></div>
         </div>

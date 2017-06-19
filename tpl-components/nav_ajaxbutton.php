@@ -1,5 +1,8 @@
 <div class ="ajax-button">
     <?php
+      
+      wp_enqueue_script('ajaxLoop');
+
       $ajaxLoading_key = 0;
       $ajaxLoading_value = 0;
 
