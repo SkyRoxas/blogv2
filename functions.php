@@ -23,6 +23,7 @@ function add_custom_scripts()
 {
     wp_register_script('ajaxLoop', get_template_directory_uri() . '/js/ajaxLoop.js');
     wp_register_script('imageHeight', get_template_directory_uri() . '/js/imageHeight.js');
+    wp_register_script('fontSizeAuto', get_template_directory_uri() . '/js/fontSizeAuto.js');
     wp_register_script('dragscroll', get_template_directory_uri() . '/js/dragscroll.js');
     wp_register_script('masonryHeight', get_template_directory_uri() . '/js/masonryHeight.js');
 
