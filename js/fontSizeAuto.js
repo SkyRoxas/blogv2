@@ -8,7 +8,7 @@
     var realHeight = regionHeight - $('.avatar').innerHeight()
 
     function sizeUp () {
-      while (fontHeight < realHeight) {
+      while (fontHeight < realHeight && fontSize < fontSizeMax) {
         fontSize = fontSize * 1.2
         $('.block--textblock__01').find('.fontSizeAuto').css('font-size', fontSize)
         fontHeight = $('.block--textblock__01').find('.fontSizeAuto').innerHeight()
