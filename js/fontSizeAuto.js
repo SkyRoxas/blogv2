@@ -4,11 +4,11 @@
 
     var regionHeight = $('.block--textblock__01').innerHeight()
     var fontHeight = $('.block--textblock__01').find('.fontSizeAuto').innerHeight()
-    var fontSize = $('.block--textblock__01').find('.fontSizeAuto').css('font-size').replace('px', '')
     var realHeight = regionHeight - $('.avatar').innerHeight()
 
     function sizeUp () {
-      while (fontHeight < realHeight && fontSize < fontSizeMax) {
+      var fontSize = $('.block--textblock__01').find('.fontSizeAuto').css('font-size').replace('px', '')
+      while (fontHeight < realHeight) {
         fontSize = fontSize * 1.2
         $('.block--textblock__01').find('.fontSizeAuto').css('font-size', fontSize)
         fontHeight = $('.block--textblock__01').find('.fontSizeAuto').innerHeight()
@@ -16,8 +16,9 @@
     }
 
     function sizeDown () {
+      var fontSize = $('.block--textblock__01').find('.fontSizeAuto').css('font-size').replace('px', '')
       while (fontHeight > realHeight) {
-        fontSize = fontSize * 0.8
+        fontSize = fontSize * 0.6
         $('.block--textblock__01').find('.fontSizeAuto').css('font-size', fontSize)
         fontHeight = $('.block--textblock__01').find('.fontSizeAuto').innerHeight()
       }
@@ -45,7 +46,12 @@
       timer = window.setTimeout(function () {
         if (newDimensions.width > previousDimensions.width) {
           sizeUp()
+          console.log($('.block--textblock__01').find('.fontSizeAuto').css('font-size').replace('px', ''))
+          if ($('.block--textblock__01').find('.fontSizeAuto').css('font-size').replace('px', '') > fontSizeMax) {
+            $('.block--textblock__01').find('.fontSizeAuto').css('font-size', fontSizeMax)
+          }
         } else {
+          console.log('false')
           sizeDown()
         }
 
