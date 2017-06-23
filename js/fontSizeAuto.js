@@ -1,6 +1,7 @@
 (function ($) {
   function fontSizeAuto () {
     var fontSizeMax = 48
+    var fontSizeMin = 1
 
     var regionHeight = $('.block--textblock__01').innerHeight()
     var fontHeight = $('.block--textblock__01').find('.fontSizeAuto').innerHeight()
@@ -46,13 +47,14 @@
       timer = window.setTimeout(function () {
         if (newDimensions.width > previousDimensions.width) {
           sizeUp()
-          console.log($('.block--textblock__01').find('.fontSizeAuto').css('font-size').replace('px', ''))
           if ($('.block--textblock__01').find('.fontSizeAuto').css('font-size').replace('px', '') > fontSizeMax) {
             $('.block--textblock__01').find('.fontSizeAuto').css('font-size', fontSizeMax)
           }
         } else {
-          console.log('false')
           sizeDown()
+          if ($('.block--textblock__01').find('.fontSizeAuto').css('font-size').replace('px', '') < fontSizeMin) {
+            $('.block--textblock__01').find('.fontSizeAuto').css('font-size', fontSizeMin)
+          }
         }
 
         // Store the new dimensions
