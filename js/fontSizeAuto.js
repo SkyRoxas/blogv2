@@ -1,71 +1,67 @@
 (function ($) {
-  function fontSizeAuto () {
-    var fontSizeMax = 48
-    var fontSizeMin = 1
+  var defaults_options = {
+    fontMax: 40,
+    fontMin: 10
+  }
 
-    var regionHeight = $('.block--textblock__01').innerHeight()
-    var fontHeight = $('.block--textblock__01').find('.fontSizeAuto').innerHeight()
-    var realHeight = regionHeight - $('.avatar').innerHeight()
+  function FontResize ($options) {
+    this.fontMax = $options.fontMax
+    this.fontMin = $options.fontMin
+  }
 
-    function sizeUp () {
-      var fontSize = $('.block--textblock__01').find('.fontSizeAuto').css('font-size').replace('px', '')
-      while (fontHeight < realHeight) {
-        fontSize = fontSize * 1.2
-        $('.block--textblock__01').find('.fontSizeAuto').css('font-size', fontSize)
-        fontHeight = $('.block--textblock__01').find('.fontSizeAuto').innerHeight()
-      }
+  FontResize.prototype.method = function ($method) {
+    switch ($method) {
+      case 'setUp':
+        console.log(this.fontMax)
+        break
+      case 'setDown':
+        console.log(this.fontMin)
+        break
+      default:
     }
+  }
 
-    function sizeDown () {
-      var fontSize = $('.block--textblock__01').find('.fontSizeAuto').css('font-size').replace('px', '')
-      while (fontHeight > realHeight) {
-        fontSize = fontSize * 0.6
-        $('.block--textblock__01').find('.fontSizeAuto').css('font-size', fontSize)
-        fontHeight = $('.block--textblock__01').find('.fontSizeAuto').innerHeight()
-      }
-    }
-
-    var $window = $(window)
-
-    var previousDimensions = {
-      width: $window.width(),
-      height: $window.height()
-    }
-
+  FontResize.prototype.resize = function ($event, $callback) {
     var timer
 
-    $window.resize(function (e) {
-      var newDimensions = {
-        width: $window.width(),
-        height: $window.height()
-      }
+    var previousDimensions = {
+      width: $(window).width(),
+      height: $(window).height()
+    }
 
+    $(window).resize(function () {
+      var newDimensions = {
+        width: $(window).width(),
+        height: $(window).height()
+      }
       if (timer) {
         window.clearTimeout(timer)
       }
-
-      timer = window.setTimeout(function () {
+      timer = setTimeout(function () {
         if (newDimensions.width > previousDimensions.width) {
-          sizeUp()
-          if ($('.block--textblock__01').find('.fontSizeAuto').css('font-size').replace('px', '') > fontSizeMax) {
-            $('.block--textblock__01').find('.fontSizeAuto').css('font-size', fontSizeMax)
-          }
+          $callback()
         } else {
-          sizeDown()
-          if ($('.block--textblock__01').find('.fontSizeAuto').css('font-size').replace('px', '') < fontSizeMin) {
-            $('.block--textblock__01').find('.fontSizeAuto').css('font-size', fontSizeMin)
-          }
+          $callback()
         }
-
-        // Store the new dimensions
         previousDimensions = newDimensions
       }, 100)
     })
+  }
 
-    sizeDown()
+  $.fn.fontResize = function ($options) {
+    var fontResize = new FontResize($.extend(defaults_options, $options))
+
+    console.log(fontResize)
+
+    fontResize.resize('null', function () {
+      fontResize.method('setDown')
+    })
   }
 
   $(document).ready(function () {
-    fontSizeAuto()
+    var option = {
+      fontMax: 500
+    }
+    $('body').fontResize(option)
   })
 })(jQuery)
