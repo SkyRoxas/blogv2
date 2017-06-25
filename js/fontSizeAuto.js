@@ -1,27 +1,84 @@
 (function ($) {
-  var defaults_options = {
-    fontMax: 40,
-    fontMin: 10
+  'use strict'
+
+  var defaults = {
+    maxSize: 40,
+    minSize: 10
   }
 
-  function FontResize ($options) {
-    this.fontMax = $options.fontMax
-    this.fontMin = $options.fontMin
+  /**
+   * FontAbsolute function - description
+   * @class
+   * @param  {string} $element description
+   * @param  {number} $limitHeightItem description
+   * @param  {object} $options description
+   * @param  {string|array}  $options description
+   * @return {type}          description
+   */
+  var FontAbsolute = function ($element, $limitHeightItem, $options, $moveHeightItem) {
+    this.element = $element
+    this.limitHeightItem = $limitHeightItem
+    this.option = $options
+    this.moveHeightItem = $moveHeightItem
   }
 
-  FontResize.prototype.method = function ($method) {
+  /**
+   * fontSizeSet function - description
+   *
+   * @param  {string} $method description
+   * @return {type}         description
+   */
+  FontAbsolute.prototype.fontSizeSet = function ($method) {
+    var $element = this.element
+
+    var fontSize
+    var fontHeight
+    var resultHeight = 0
+
+    if (typeof this.moveHeightItem === 'string') {
+      resultHeight = $(this.moveHeightItem).innerHeight()
+    } else if (this.moveHeightItem instanceof Array) {
+      for (var i = 0; i < this.moveHeightItem.length; i++) {
+        $(this.moveHeightItem[i]).each(function () {
+          resultHeight = resultHeight + $(this).innerHeight()
+        })
+      }
+    } else {
+      resultHeight = 0
+    }
+    resultHeight = $(this.limitHeightItem).innerHeight() - resultHeight
+
     switch ($method) {
-      case 'setUp':
-        console.log(this.fontMax)
+      case ('up'):
+        fontSize = $element.css('font-size').replace('px', '')
+        fontHeight = $element.innerHeight()
+        while (fontHeight < resultHeight) {
+          fontSize = fontSize * 1.2
+          $element.css('font-size', fontSize)
+          fontHeight = $element.innerHeight()
+        }
         break
-      case 'setDown':
-        console.log(this.fontMin)
+      case ('down'):
+        fontSize = $element.css('font-size').replace('px', '')
+        fontHeight = $element.innerHeight()
+        while (fontHeight > resultHeight) {
+          fontSize = fontSize * 0.6
+          $element.css('font-size', fontSize)
+          fontHeight = $element.innerHeight()
+        }
         break
       default:
     }
   }
 
-  FontResize.prototype.resize = function ($event, $callback) {
+  /**
+   * resizeDecide function - description
+   *
+   * @param  {string} $method   description
+   * @param  {type} $callback description
+   * @return {type}           description
+   */
+  FontAbsolute.prototype.resizeDecide = function ($callbackUp, $callbackDown) {
     var timer
 
     var previousDimensions = {
@@ -39,29 +96,30 @@
       }
       timer = setTimeout(function () {
         if (newDimensions.width > previousDimensions.width) {
-          $callback()
+          $callbackUp()
         } else {
-          $callback()
+          $callbackDown()
         }
         previousDimensions = newDimensions
       }, 100)
     })
   }
 
-  $.fn.fontResize = function ($options) {
-    var fontResize = new FontResize($.extend(defaults_options, $options))
+  $.fn.FontAbsolute = function ($limitHeightItem, $options, $moveHeightItem) {
+    var k = new FontAbsolute(this, $limitHeightItem, $.extend(defaults, $options), $moveHeightItem)
 
-    console.log(fontResize)
+    k.fontSizeSet('down')
+    k.fontSizeSet('up')
 
-    fontResize.resize('null', function () {
-      fontResize.method('setDown')
+    k.resizeDecide(function () {
+      k.fontSizeSet('up')
+    }, function () {
+      k.fontSizeSet('down')
     })
   }
 
   $(document).ready(function () {
-    var option = {
-      fontMax: 500
-    }
-    $('body').fontResize(option)
+    var options = {}
+    $('.block--textblock__01 .fontSizeAuto').FontAbsolute('.block--textblock__01', options, ['.block--textblock__01 .avatar'])
   })
 })(jQuery)
