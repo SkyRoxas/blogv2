@@ -6,15 +6,16 @@
     minSize: 10
   }
 
-  /**
-   * FontAbsolute function - description
-   * @class
-   * @param  {string} $element description
-   * @param  {number} $limitHeightItem description
-   * @param  {object} $options description
-   * @param  {string|array}  $options description
-   * @return {type}          description
-   */
+    /**
+     * FontAbsolute function - description
+     * @constructor
+     * @param  {string} $element description
+     * @param  {number} $limitHeightItem description
+     * @param  {object} $options description
+     * @param  {string|array}  $options description
+     * @return {type}          description
+     */
+
   var FontAbsolute = function ($element, $limitHeightItem, $options, $moveHeightItem) {
     this.element = $element
     this.limitHeightItem = $limitHeightItem
@@ -22,15 +23,14 @@
     this.moveHeightItem = $moveHeightItem
   }
 
-  /**
-   * fontSizeSet function - description
-   *
-   * @param  {string} $method description
-   * @return {type}         description
-   */
+    /**
+     * set fontSizeSet
+     *
+     * @fires FontAbsolute#fontSizeSet
+     */
+
   FontAbsolute.prototype.fontSizeSet = function ($method) {
     var $element = this.element
-
     var fontSize
     var fontHeight
     var resultHeight = 0
@@ -69,15 +69,21 @@
         break
       default:
     }
+    if (fontSize > this.option.maxSize) {
+      $element.css('font-size', this.option.maxSize)
+    } else if (fontSize < this.option.minSize) {
+      $element.css('font-size', this.option.minSize)
+    }
   }
 
-  /**
-   * resizeDecide function - description
-   *
-   * @param  {string} $method   description
-   * @param  {type} $callback description
-   * @return {type}           description
-   */
+    /**
+     * resizeDecide function - description
+     *
+     * @param  {string} $method   description
+     * @param  {type} $callback description
+     * @return {type}           description
+     */
+
   FontAbsolute.prototype.resizeDecide = function ($callbackUp, $callbackDown) {
     var timer
 
