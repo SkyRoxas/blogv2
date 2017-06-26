@@ -21,7 +21,9 @@
           if ( ! empty( $user_query->results ) ) {
             foreach ( $user_query->results as $user ) {
                  echo '<li class ="p-1">';
+                 echo '<a href ="'.get_author_posts_url($user->ID).'">';
                  echo get_avatar($user->ID,'40');
+                 echo "</a>";
                  echo '</li>';
                }
              }

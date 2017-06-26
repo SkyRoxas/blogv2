@@ -18,10 +18,7 @@
   <title><?php wp_title(); ?></title>
 </head>
 <script src="https://use.typekit.net/znw8cer.js"></script>
-
-<script type="text/javascript">
-var wp_template_url = '<?php echo bloginfo('template_url'); ?>';
-</script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
 
 <script>try{Typekit.load({ async: true });}catch(e){}</script>
 <body class ="<?php is_home() ? print'front' : print 'not-front'; ?>">
@@ -40,13 +37,14 @@ var wp_template_url = '<?php echo bloginfo('template_url'); ?>';
   </div>
 </header>
 
-<div id ="banner" class ="region">
-  <?php get_template_part('tpl-components/block--imageblock__01') ?>
+<?php if(!is_author()): ?>
+  <div id ="banner" class ="region">
+    <?php get_template_part('tpl-components/block--imageblock__01') ?>
 
-  <?php if(is_home()): ?>
-    <?php get_template_part('tpl-components/block--textblock__front') ?>
-  <?php elseif (is_single()):?>
-    <?php get_template_part('tpl-components/block--textblock__single') ?>
-  <?php endif; ?>
-
+    <?php if(is_home()): ?>
+      <?php get_template_part('tpl-components/block--textblock__front') ?>
+    <?php elseif (is_single()):?>
+      <?php get_template_part('tpl-components/block--textblock__single') ?>
+    <?php endif; ?>
 </div>
+<?php endif; ?>
