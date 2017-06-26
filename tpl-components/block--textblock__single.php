@@ -1,5 +1,5 @@
 <?php
-  wp_enqueue_script('fontSizeAuto');
+  wp_enqueue_script('block--textblock__single');
 ?>
 <div class ='block--textblock__front block--textblock__01'>
   <div class ="wrap d-flex justify-content-center align-items-center">

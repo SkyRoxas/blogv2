@@ -7,7 +7,7 @@
   }
 
     /**
-     * FontAbsolute function - description
+     * FontAbResize function - description
      * @constructor
      * @param  {string} $element description
      * @param  {number} $limitHeightItem description
@@ -16,7 +16,7 @@
      * @return {type}          description
      */
 
-  var FontAbsolute = function ($element, $limitHeightItem, $options, $moveHeightItem) {
+  var FontAbResize = function ($element, $limitHeightItem, $options, $moveHeightItem) {
     this.element = $element
     this.limitHeightItem = $limitHeightItem
     this.option = $options
@@ -26,10 +26,10 @@
     /**
      * set fontSizeSet
      *
-     * @fires FontAbsolute#fontSizeSet
+     * @fires FontAbResize#fontSizeSet
      */
 
-  FontAbsolute.prototype.fontSizeSet = function ($method) {
+  FontAbResize.prototype.fontSizeSet = function ($method) {
     var $element = this.element
     var fontSize
     var fontHeight
@@ -84,7 +84,7 @@
      * @return {type}           description
      */
 
-  FontAbsolute.prototype.resizeDecide = function ($callbackUp, $callbackDown) {
+  FontAbResize.prototype.resizeDecide = function ($callbackUp, $callbackDown) {
     var timer
 
     var previousDimensions = {
@@ -111,8 +111,17 @@
     })
   }
 
-  $.fn.FontAbsolute = function ($limitHeightItem, $options, $moveHeightItem) {
-    var k = new FontAbsolute(this, $limitHeightItem, $.extend(defaults, $options), $moveHeightItem)
+  /**
+   * FontAbResize Plugin function - description
+    absolute block font size auto resize
+   *
+   * @param  {string} $limitHeightItem description
+   * @param  {object} $options         description
+   * @param  {string|array} $moveHeightItem  description
+   * @return {type}                  description
+   */
+  $.fn.FontAbResize = function ($limitHeightItem, $options, $moveHeightItem) {
+    var k = new FontAbResize(this, $limitHeightItem, $.extend(defaults, $options), $moveHeightItem)
 
     k.fontSizeSet('down')
     k.fontSizeSet('up')
@@ -123,9 +132,4 @@
       k.fontSizeSet('down')
     })
   }
-
-  $(document).ready(function () {
-    var options = {}
-    $('.block--textblock__01 .fontSizeAuto').FontAbsolute('.block--textblock__01', options, ['.block--textblock__01 .avatar'])
-  })
 })(jQuery)

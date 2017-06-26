@@ -16,6 +16,8 @@ add_action('after_setup_theme', 'add_custom_sizes');
 function add_jquery()
 {
     wp_enqueue_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js');
+    wp_register_script('FontAbResize', get_template_directory_uri() . '/js/plugin/jQueryPlugin_FontAbResize.js');
+
 }
 
 
@@ -26,6 +28,9 @@ function add_custom_scripts()
     wp_register_script('fontSizeAuto', get_template_directory_uri() . '/js/fontSizeAuto.js');
     wp_register_script('dragscroll', get_template_directory_uri() . '/js/dragscroll.js');
     wp_register_script('masonryHeight', get_template_directory_uri() . '/js/masonryHeight.js');
+
+    wp_register_script('block--textblock__single', get_template_directory_uri() . '/js/block--textblock__single.js',['FontAbResize']);
+
 
     wp_enqueue_script('header', get_template_directory_uri() . '/js/header.js');
     wp_enqueue_script('mobileTaxonomy', get_template_directory_uri() . '/js/mobileTaxonomy.js');
