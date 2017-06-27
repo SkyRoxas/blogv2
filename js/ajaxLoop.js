@@ -19,14 +19,13 @@ jQuery(function ($) {
       },
       dataType: 'html',
       beforeSend: function () {
-        $content.find('.buttonValue').html('<img src ="' + wp_template_url + '/images/loading.gif" width ="95">')
+        $content.find('.buttonValue').html('<img src ="' + template_directory_uri + '/images/loading.gif" width ="95">')
       },
       success: function (data) {
         setTimeout(function () {
           $content.find('.buttonValue').html($buttonValue)
           $content.before(data)
         }, 2000)
-        // console.log(data)
       },
       error: function (jqXHR, textStatus, errorThrown) {
         console(jqXHR + ' :: ' + textStatus + ' :: ' + errorThrown)
