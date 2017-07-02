@@ -1,17 +1,75 @@
-(function ($) {
-  $(document).ready(function () {
-    var death_rate = [['越南', 24.26], ['阿魯巴', 17.48], ['關島', 10.01], ['澳門', 5.84]]
-    var div_data_bind = d3.select('.test').selectAll('div').data(death_rate)
-    div_set = div_data_bind.enter().append('div')
-    div_data_bind.exit().remove()
-    div_set.text(function (d, i) {
-      return i + ' / ' + d[0]
-    })
-    div_set.style('height', '20px')
-    div_set.style('background', 'red')
-    div_set.style('margin', '5px')
-    div_set.style('width', function (d, i) {
-      return (d[1] * 10) + 'px'
-    })
-  })
-})(jQuery)
+/**
+ * my SVG Chart width d3.js
+ * @module myChart
+ */
+var myChart = {}
+
+var defaults = {
+  viewport: {
+    height: 200,
+    width: 200
+  },
+  move: {
+    x: 100,
+    y: 100
+  },
+  radius: {
+    x: 50,
+    y: 50
+  }
+}
+
+/**
+ * Svg 參數
+ * @namespace myChart
+ * @class svg
+ */
+myChart.svg = defaults
+
+/**
+ * 運算
+ * @namespace myChart
+ * @class math_method
+ */
+myChart.math_method = {
+
+/**
+ * 計算 x 軸終點座標
+ *
+ * @method target_X
+ * @param {number} $deg
+ * @return {number} [description]
+ */
+  coordinate_X: function ($deg) {
+    return myChart.svg.move.x + myChart.svg.radius.x * Math.cos($deg * Math.PI / 180)
+  },
+
+/**
+ * 計算 y 軸終點座標
+ *
+ * @method target_Y
+ * @param  {number} $deg [description]
+ * @return {number}      [description]
+ */
+  coordinate_Y: function ($deg) {
+    return myChart.svg.move.y + myChart.svg.radius.y * Math.sin($deg * Math.PI / 180)
+  }
+
+}
+
+/**
+ * 角度
+ * @class coordinate
+ * @constructor
+ * @namespace myChart
+ * @param  {number} $deg [description]
+ */
+myChart.part = function ($deg) {
+  this.deg = $deg
+  this.target_X = myChart.math_method.coordinate_X($deg)
+  this.target_Y = myChart.math_method.coordinate_Y($deg)
+}
+
+var k = new myChart.part(20)
+
+console.log(k)
