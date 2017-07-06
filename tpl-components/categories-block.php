@@ -1,4 +1,3 @@
-
 <div class ="categories-block container pt-5 pb-5">
   <ul class ="categories-list">
     <?php

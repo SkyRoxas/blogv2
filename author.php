@@ -1,4 +1,7 @@
 <?php get_header(); ?>
+
+<?php get_template_part('tpl-components/mychart') ?>
+
     <div class ="container">
       <div class ='wrap row p-5'>
         <div class ="">
@@ -13,5 +16,4 @@
         <?php GravatarApi('aboutMe') ?>
       </div>
     </div>
-    <div class ="test"></div>
 <?php  get_footer(); ?>
