@@ -42,7 +42,6 @@
       'title': 'test',
       'count': 90
     }
-
   ]
 
   myChart.data = {
@@ -132,7 +131,6 @@
   }
 
 /**
- * 角度
  * @class ChartPart
  * @constructor
  * @namespace myChart
@@ -154,11 +152,28 @@
     this.target_Y = myChart.math_method.coordinate_Y($angle + $startangle)
   }
 
+  /**
+   * [createChart description]
+   * @class createChart
+   * @namespace myChart
+   */
   myChart.createChart = {
-    pathItem: function (starangle = 0, svgPath = '') {
+
+    /**
+     * [description]
+     * @return {string} ChartPart item svgPath 字串
+     */
+    pathItem: function () {
+      var starangle = 0
+      var svgPath = ''
       for (var i = 0; i < myChart.data.getData().length; i++) {
         var part = new myChart.ChartPart(myChart.data.getData()[i].angle, starangle)
-        var d = 'M100 100,L ' + part.starting_X + ' ' + part.starting_Y + 'A 100 100 0 ' + myChart.math_method.flags(myChart.data.getData()[i].angle) + ' 0' + part.target_X + ' ' + part.target_Y + ',Z'
+
+        var d =
+          'M100 100,' +
+          'L ' + part.starting_X + ' ' + part.starting_Y +
+          'A 100 100 0 ' + myChart.math_method.flags(myChart.data.getData()[i].angle) + ' 0' + part.target_X + ' ' + part.target_Y + ',Z'
+
         svgPath = svgPath + ' ' + myChart.svgMethod.path('part' + i, d)
         starangle += myChart.data.getData()[i].angle
       }
@@ -182,9 +197,9 @@
 
   $(document).ready(function () {
     console.log(myChart)
-    myChart.createChart.afterItem = function () {
-      return '<circle cx ="100" cy ="100" r ="50" style ="fill:#fff";/>'
-    }
+    // myChart.createChart.afterItem = function () {
+    //   return '<circle cx ="100" cy ="100" r ="50" style ="fill:#fff";/>'
+    // }
     myChart.createChart.append('.test')
   })
 })(jQuery)
