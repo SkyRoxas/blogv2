@@ -32,7 +32,7 @@
     }, {
       'id': 3,
       'title': 'JavaScript',
-      'count': 90
+      'count': 120
     }, {
       'id': 4,
       'title': 'JavaScript',
@@ -74,14 +74,12 @@
  * @class svg_method
  */
   myChart.svgMethod = {
-    /**
-     * [description]
-     * @param  {string} $class svg path attributes class
-     * @param  {string} $d     svg path attributes d
-     * @return {string}        svg path html
-     */
-    path: function ($class, $d) {
-      return '<path class="' + $class + '" style="fill:#fe0; stroke:#fff; stroke-width:3;" d = "' + $d + '"/>'
+    makeSvg: function (tag, attrs) {
+      var el = document.createElementNS('http://www.w3.org/2000/svg', tag)
+      for (var k in attrs) {
+        el.setAttribute(k, attrs[k])
+      }
+      return el
     }
   }
 
@@ -159,47 +157,33 @@
    */
   myChart.createChart = {
 
-    /**
-     * [description]
-     * @return {string} ChartPart item svgPath 字串
-     */
-    pathItem: function () {
+    chartPart: function () {
       var starangle = 0
-      var svgPath = ''
       for (var i = 0; i < myChart.data.getData().length; i++) {
         var part = new myChart.ChartPart(myChart.data.getData()[i].angle, starangle)
 
-        var d =
-          'M100 100,' +
-          'L ' + part.starting_X + ' ' + part.starting_Y +
-          'A 100 100 0 ' + myChart.math_method.flags(myChart.data.getData()[i].angle) + ' 0' + part.target_X + ' ' + part.target_Y + ',Z'
+        var path = myChart.svgMethod.makeSvg('path',
+          {
+            d: 'M' + '100,100' + ' ' +
+               'L' + part.starting_X + ' ' + part.starting_Y + ' ' +
+               'A' + '100 100' + ' ' + '0' + ' ' + myChart.math_method.flags(myChart.data.getData()[i].angle) + ' ' + '0' + ' ' + part.target_X + ' ' + part.target_Y +
+               'Z',
+            style: 'fill:#000000; stroke:#ffffff; stroke-width:2px;'
+          }
+        )
 
-        svgPath = svgPath + ' ' + myChart.svgMethod.path('part' + i, d)
+        $('svg').append(path)
+
         starangle += myChart.data.getData()[i].angle
       }
-      return svgPath
     },
-    beforeItem: function (svgElement) {
-      return svgElement
-    },
-    afterItem: function (svgElement) {
-      return svgElement
-    },
-    append: function ($element) {
-      $($element).append(
-        '<svg width="600" height="600" viewBox="0 0 600 600">' +
-        myChart.createChart.beforeItem() +
-        myChart.createChart.pathItem() +
-        myChart.createChart.afterItem() +
-        '</svg>')
+    appendSvg: function (el) {
+      $(el).append('<svg width="200" height="200" viewBox="0 0 200 200">')
     }
   }
 
   $(document).ready(function () {
-    console.log(myChart)
-    // myChart.createChart.afterItem = function () {
-    //   return '<circle cx ="100" cy ="100" r ="50" style ="fill:#fff";/>'
-    // }
-    myChart.createChart.append('.test')
+    myChart.createChart.appendSvg('.test')
+    myChart.createChart.chartPart()
   })
 })(jQuery)
