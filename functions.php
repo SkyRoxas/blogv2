@@ -25,7 +25,7 @@ function add_custom_scripts()
 {
     wp_register_script('ajaxLoop', get_template_directory_uri() . '/js/ajaxLoop.js');
     wp_localize_script( 'ajaxLoop', 'template_directory_uri', array(get_template_directory_uri()) );
-    
+
     wp_register_script('imageHeight', get_template_directory_uri() . '/js/imageHeight.js');
     wp_register_script('fontSizeAuto', get_template_directory_uri() . '/js/fontSizeAuto.js');
     wp_register_script('dragscroll', get_template_directory_uri() . '/js/dragscroll.js');
@@ -214,17 +214,7 @@ function GravatarApi($attributes = 'displayName')
     } else {
         if ($attributes == 'aboutMe') {
             echo '
-              <a href ="https://zh-tw.gravatar.com/profiles/edit/#about-you">（編輯資料）</a>
-              <br>
-              職稱：棒子工程師
-              <br>
-              學系：棒子技術學院
-              <br><br>
-              關於我：
-              <br>
-              棒一下～ 棒一下～ 快點棒一下!!
-              <br>
-              ';
+              <a href ="https://zh-tw.gravatar.com/profiles/edit/#about-you">（編輯資料）</a>';
         }
     }
 }

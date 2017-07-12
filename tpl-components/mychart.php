@@ -1,5 +1,5 @@
 <?php
-    wp_enqueue_script('myscripts', get_template_directory_uri() . '/js/myscripts.js');
+    wp_enqueue_script('mychart', get_template_directory_uri() . '/js/mychart.js');
  ?>
 
 <?php
