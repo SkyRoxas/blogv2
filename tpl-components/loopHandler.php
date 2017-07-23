@@ -1,4 +1,4 @@
-<div class ="list-item col-12 col-lg-4 col-md-6 col-sm-6 p-2">
+<div class ="list-item col-12 col-lg-3 col-md-6 col-sm-6 p-2">
     <div class ="view-mode container">
         <div class ="row">
             <div class ="field-title col-12 p-3">
