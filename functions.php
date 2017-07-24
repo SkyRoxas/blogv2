@@ -212,9 +212,12 @@ function GravatarApi($attributes = 'displayName')
           echo $data;
       }
     } else {
-        if ($attributes == 'aboutMe') {
-            echo '
-              <a href ="https://zh-tw.gravatar.com/profiles/edit/#about-you">（編輯資料）</a>';
+        if(is_user_logged_in()){
+            if ($attributes == 'aboutMe') {
+                echo '
+                  <a href ="https://zh-tw.gravatar.com/profiles/edit/#about-you">（編輯資料）</a>';
+            }
         }
+
     }
 }
