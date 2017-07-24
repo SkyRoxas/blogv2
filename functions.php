@@ -141,6 +141,7 @@ function ajax_ajaxLoop()
       'paged'                    => $page,
       'orderby'                  => 'date',
       'order'                    => 'DESC',
+      'post_status'=> 'publish',
     );
 
     if ($queryKey) {
