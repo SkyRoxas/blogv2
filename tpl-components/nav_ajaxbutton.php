@@ -1,6 +1,6 @@
 <div class ="ajax-button">
     <?php
-      
+
       wp_enqueue_script('ajaxLoop');
 
       $ajaxLoading_key = 0;
@@ -20,7 +20,7 @@
       }
      ?>
      <script type="text/javascript">
-       var $buttonValue = 'Load More';
+       var $buttonValue = '';
        var $pageNumber = 1;
        var $ajaxLoading_key = '<?php echo $ajaxLoading_key; ?>';
        var $ajaxLoading_value = '<?php echo $ajaxLoading_value; ?>';

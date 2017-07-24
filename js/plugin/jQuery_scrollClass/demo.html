@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="scrollClass.js"></script>
+    <title>scrollClass</title>
+  </head>
+  <body>
+    <h1>scrollClass demo</h1>
+    <div class ="item">item</div>
+    <div class ="item">item</div>
+    <div class ="item">item</div>
+  </body>
+  <script>
+  (function($){
+    $(document).ready(function(){
+      $('.item').scrollClass({
+        'className':'new-class'
+      })
+    })
+  })(jQuery)
+  </script>
+</html>

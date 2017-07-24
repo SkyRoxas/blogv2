@@ -22,10 +22,8 @@ jQuery(function ($) {
         $content.find('.buttonValue').html('<img src ="' + template_directory_uri + '/images/loading.gif" width ="95">')
       },
       success: function (data) {
-        setTimeout(function () {
-          $content.find('.buttonValue').html($buttonValue)
-          $content.before(data)
-        }, 2000)
+        $content.find('.buttonValue').html($buttonValue)
+        $content.before(data)
       },
       error: function (jqXHR, textStatus, errorThrown) {
         console(jqXHR + ' :: ' + textStatus + ' :: ' + errorThrown)
