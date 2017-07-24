@@ -20,7 +20,7 @@
       }
      ?>
      <script type="text/javascript">
-       var $buttonValue = '';
+       var $buttonValue = 'Load More';
        var $pageNumber = 1;
        var $ajaxLoading_key = '<?php echo $ajaxLoading_key; ?>';
        var $ajaxLoading_value = '<?php echo $ajaxLoading_value; ?>';
