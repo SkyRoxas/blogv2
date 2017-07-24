@@ -21,7 +21,7 @@
         var eachSelect = $(this)
         var scrollPosition = eachSelect.offset().top
         if (increment) {
-          if ($(window).scrollTop() > scrollPosition - $(window).height() && $(window).scrollTop() < scrollPosition) {
+          if ($(window).scrollTop() > scrollPosition - $(window).height() && $(window).scrollTop() < scrollPosition - eachSelect.innerHeight()) {
             setTimeout(function () {
               eachSelect.addClass(className)
             }, delay * timer++)
