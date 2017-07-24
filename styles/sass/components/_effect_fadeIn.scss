@@ -1,10 +1,20 @@
-.effect_fadeIn{
-  opacity: 0;
-  transform: scale(0);
-  transition: transform 0.5s!important;
+@keyframes zoomIN {
+    10% {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
-.effect_fadeIn_target{
-  opacity: 1;
-  transform: scale(1);
+.effect_fadeIn {
+    opacity: 0;
+}
+
+.effect_fadeIn_target {
+    animation: zoomIN 0.5s linear;
+    animation-fill-mode:forwards;
 }
