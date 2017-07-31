@@ -16,7 +16,9 @@
 
 
 .archive_01 {
-
+.dragscroll{
+    cursor: move;
+}
     @include media-breakpoint-up(xs) {
         div.wrap {
             .list-item {
