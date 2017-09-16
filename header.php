@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <!-- include boostrap 4 cdn -->
+  <meta name="google-site-verification" content="yhBuqVh7SS4Qt-xokxqXjxQBHxb9U2FOUS10r_tpNxE" />
+<!-- include boostrap 4 cdn -->
   <!--
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
