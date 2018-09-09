@@ -34,7 +34,9 @@
   <div class="list-wrap py-3">
     <div class="container">
       <?php
+        $author = get_user_by('slug', get_query_var('author_name'));
         $args = array(
+          'author' => $author->ID,
           'numberposts' => -1 // 全撈
         );
 
