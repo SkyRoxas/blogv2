@@ -43,7 +43,7 @@
 
 
 
-<header id="header" class="sticky-top">
+<header id="header">
   <!--<img class ="logo" src="<?php bloginfo('template_url'); ?>/images/logo.png">-->
   <div class ='region-wrapper p-2'>
     <div class ='info-wrapper'>
