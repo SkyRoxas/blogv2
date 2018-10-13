@@ -24,7 +24,7 @@ function add_jquery()
 function add_custom_scripts()
 {
     wp_register_script('ajaxLoop', get_template_directory_uri() . '/js/ajaxLoop.js');
-    wp_localize_script( 'ajaxLoop', 'template_directory_uri', array(get_template_directory_uri()) );
+    wp_localize_script('ajaxLoop', 'template_directory_uri', array(get_template_directory_uri()));
 
     wp_register_script('imageHeight', get_template_directory_uri() . '/js/imageHeight.js');
     wp_register_script('fontSizeAuto', get_template_directory_uri() . '/js/fontSizeAuto.js');
@@ -32,15 +32,10 @@ function add_custom_scripts()
     wp_register_script('masonryHeight', get_template_directory_uri() . '/js/masonryHeight.js');
     wp_enqueue_script('effect_scrollClass', get_template_directory_uri() . '/js/effect_scrollClass.js');
 
-    wp_register_script('block--textblock__single', get_template_directory_uri() . '/js/block--textblock__single.js',['FontAbResize']);
+    wp_register_script('block--textblock__single', get_template_directory_uri() . '/js/block--textblock__single.js', ['FontAbResize']);
 
     wp_enqueue_script('header', get_template_directory_uri() . '/js/header.js');
     wp_enqueue_script('mobileTaxonomy', get_template_directory_uri() . '/js/mobileTaxonomy.js');
-
-
-
-
-
 }
 
 add_action('wp_enqueue_scripts', 'add_jquery');
@@ -189,36 +184,49 @@ function GravatarApi($attributes = 'displayName')
 
     if (isset($profile['entry'][0][$attributes])) {
         $data = $profile['entry'][0][$attributes];
-      //aboutMe
-      if ($attributes == 'aboutMe') {
-          echo nl2br($data);
-      //urls
-      } elseif ($attributes == 'urls') {
-          if (is_array($profile) && isset($profile['entry'])) {
-              foreach ($data as $key => $val) {
-                  $tool;
-                  //facebook
-                  if (stripos($data[$key]['value'], $tool='facebook')) {
-                      echo '<a class = "'.$tool.'" href ="'.$data[$key]['value'].'">'.$data[$key]['title'].'</a>';
-                  //git
-                  } elseif (stripos($data[$key]['value'], $tool='git')) {
-                      echo '<a class = "'.$tool.'" href ="'.$data[$key]['value'].'">'.$data[$key]['title'].'</a>';
-                  //other
-                  } else {
-                      echo '<a class = "'.$tool.'" href ="'.$data[$key]['value'].'">'.$data[$key]['title'].'</a>';
-                  }
-              }
-          }
-      } else {
-          echo $data;
-      }
+        //aboutMe
+        if ($attributes == 'aboutMe') {
+            echo nl2br($data);
+            //urls
+        } elseif ($attributes == 'urls') {
+            if (is_array($profile) && isset($profile['entry'])) {
+                foreach ($data as $key => $val) {
+                    $tool;
+                    //facebook
+                    if (stripos($data[$key]['value'], $tool='facebook')) {
+                        echo '<a class = "'.$tool.'" href ="'.$data[$key]['value'].'">'.$data[$key]['title'].'</a>';
+                        //git
+                    } elseif (stripos($data[$key]['value'], $tool='git')) {
+                        echo '<a class = "'.$tool.'" href ="'.$data[$key]['value'].'">'.$data[$key]['title'].'</a>';
+                        //other
+                    } else {
+                        echo '<a class = "'.$tool.'" href ="'.$data[$key]['value'].'">'.$data[$key]['title'].'</a>';
+                    }
+                }
+            }
+        } else {
+            echo $data;
+        }
     } else {
-        if(is_user_logged_in()){
+        if (is_user_logged_in()) {
             if ($attributes == 'aboutMe') {
                 echo '
                   <a href ="https://zh-tw.gravatar.com/profiles/edit/#about-you">（編輯資料）</a>';
             }
         }
-
     }
+}
+
+
+// gravatar add class to img
+add_filter('get_avatar', 'add_gravatar_class');
+
+function add_gravatar_class($class)
+{
+    if (is_author()) {
+        $class = str_replace('class="avatar', 'class="avatar pic-2 rounded-circle', $class);
+    } else {
+        $class = str_replace('class="avatar', 'class="avatar pic-2', $class);
+    }
+    return $class;
 }
