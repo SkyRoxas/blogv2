@@ -21,7 +21,7 @@
   ga('send', 'pageview');
 
 </script>
-  <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_url'); ?>/styles/css/style.css">
+  <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_url'); ?>/dest/css/style.css">
   <?php do_action('wp_head');?>
   <title><?php wp_title(); ?></title>
 </head>

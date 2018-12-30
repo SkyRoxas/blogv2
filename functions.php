@@ -16,37 +16,19 @@ add_action('after_setup_theme', 'add_custom_sizes');
 function add_jquery()
 {
     wp_enqueue_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js');
-    wp_register_script('FontAbResize', get_template_directory_uri() . '/js/plugin/jQueryPlugin_FontAbResize.js');
-    wp_enqueue_script('scrollClass', get_template_directory_uri() . '/js/plugin/jQuery_scrollClass/scrollClass.js');
+    wp_register_script('fontAbResize', get_template_directory_uri() . '/dest/js/fontAbResize.js');
+    wp_enqueue_script('scrollClass', get_template_directory_uri() . '/dest/js/scrollClass.js');
 }
 
 
 function add_custom_scripts()
 {
-    wp_register_script('ajaxLoop', get_template_directory_uri() . '/js/ajaxLoop.js');
-    wp_localize_script('ajaxLoop', 'template_directory_uri', array(get_template_directory_uri()));
-
-    wp_register_script('imageHeight', get_template_directory_uri() . '/js/imageHeight.js');
-    wp_register_script('fontSizeAuto', get_template_directory_uri() . '/js/fontSizeAuto.js');
-    wp_register_script('dragscroll', get_template_directory_uri() . '/js/dragscroll.js');
-    wp_register_script('masonryHeight', get_template_directory_uri() . '/js/masonryHeight.js');
-    wp_enqueue_script('effect_scrollClass', get_template_directory_uri() . '/js/effect_scrollClass.js');
-
-    wp_register_script('block--textblock__single', get_template_directory_uri() . '/js/block--textblock__single.js', ['FontAbResize']);
-
-    wp_enqueue_script('header', get_template_directory_uri() . '/js/header.js');
-    wp_enqueue_script('mobileTaxonomy', get_template_directory_uri() . '/js/mobileTaxonomy.js');
+    wp_register_script('entry', get_template_directory_uri() . './dest/js/entry.js');
+    wp_localize_script('entry', 'template_directory_uri', array(get_template_directory_uri()));
 }
 
 add_action('wp_enqueue_scripts', 'add_jquery');
 add_action('wp_enqueue_scripts', 'add_custom_scripts');
-
-
-//end javascrit scripts
-
-
-
-
 
 function folder_contents()
 {

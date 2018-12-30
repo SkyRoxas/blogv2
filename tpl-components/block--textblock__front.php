@@ -4,7 +4,7 @@
 
       <!-- web info -->
         <div class ='web-info row flex-nowrap justify-content-center align-items-center p-2'>
-          <img id ="logo" src="<?php bloginfo('template_url'); ?>/images/logo.png">
+          <img id ="logo" src="<?php bloginfo('template_url'); ?>/dest/images/logo.png">
           <div class ="web-description p-2">
             <h1><a class ="name" href="<?php bloginfo("url"); ?>">Bonze</a></h1>
             <div class = "description">一群棒子的技術 Blog</div>

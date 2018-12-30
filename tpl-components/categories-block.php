@@ -19,7 +19,7 @@
                   echo '<li class ="categories-item col-lg-2 col-md-2 col-sm-4 col-6 p-1">
                               <a class ="categories-link rounded" href ="' . get_category_link($sub_category->term_id) . '">
                                 <div class ="d-flex justify-content-center align-items-center">' . $sub_category->name . '</div>
-                                <img src = "' . get_bloginfo('template_url') . '/images/square.jpg">
+                                <img src = "' . get_bloginfo('template_url') . '/dest/images/square.jpg">
                                 <div class="count">('.$sub_category->category_count.')</div>
                               </a>
                             </li>';
