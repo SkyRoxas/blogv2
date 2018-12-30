@@ -3,10 +3,6 @@ jQuery(function ($) {
   var $window = $(window)
   var $content = $('.ajax-button')
 
-  $(document).ready(function () {
-    $content.append('<div class ="buttonValue">' + $buttonValue + '</div>')
-  })
-
   var load_posts = function () {
     $.ajax({
       type: 'GET',
@@ -46,6 +42,8 @@ jQuery(function ($) {
   }
 
   $(document).ready(function () {
+    if(document.getElementsByClassName('front')) {
+      $content.append('<div class ="buttonValue">' + $buttonValue + '</div>')
     scrollTimer($window, function () {
       if ($window.scrollTop() > $content.offset().top - $window.height() && $content.parent().scrollLeft() > $content.position().left - $content.parent().width()) {
         $pageNumber++
@@ -59,5 +57,6 @@ jQuery(function ($) {
         load_posts()
       }
     })
+    }
   })
 })
