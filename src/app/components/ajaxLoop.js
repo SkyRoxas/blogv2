@@ -42,7 +42,7 @@ jQuery(function ($) {
   }
 
   $(document).ready(function () {
-    if(document.getElementsByClassName('front')) {
+    if(document.getElementsByTagName('body')[0].classList.contains('front')) {
       $content.append('<div class ="buttonValue">' + $buttonValue + '</div>')
     scrollTimer($window, function () {
       if ($window.scrollTop() > $content.offset().top - $window.height() && $content.parent().scrollLeft() > $content.position().left - $content.parent().width()) {
