@@ -19,7 +19,7 @@ jQuery(function ($) {
       },
       dataType: 'html',
       beforeSend: function () {
-        $content.find('.buttonValue').html('<img src ="' + template_directory_uri + '/images/loading.gif" width ="95">')
+        $content.find('.buttonValue').html('<img src ="' + template_directory_uri + '/dest/images/loading.gif" width ="95">')
       },
       success: function (data) {
         $content.find('.buttonValue').html($buttonValue)

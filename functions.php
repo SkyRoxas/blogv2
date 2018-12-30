@@ -16,14 +16,13 @@ add_action('after_setup_theme', 'add_custom_sizes');
 function add_jquery()
 {
     wp_enqueue_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js');
-    wp_register_script('fontAbResize', get_template_directory_uri() . '/dest/js/fontAbResize.js');
     wp_enqueue_script('scrollClass', get_template_directory_uri() . '/dest/js/scrollClass.js');
 }
 
 
 function add_custom_scripts()
 {
-    wp_register_script('entry', get_template_directory_uri() . './dest/js/entry.js');
+    wp_enqueue_script('entry', get_template_directory_uri().'/dest/js/entry.js');
     wp_localize_script('entry', 'template_directory_uri', array(get_template_directory_uri()));
 }
 

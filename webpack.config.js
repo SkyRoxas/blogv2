@@ -4,8 +4,7 @@
 module.exports = {
   entry: {
     entry: './src/app/entry.js',
-    scrollClass:'./src/app/plugin/jQuery_scrollClass/scrollClass.js',
-    fontAbResize:'./src/app/plugin/jQueryPlugin_FontAbResize.js'
+    scrollClass:'./src/app/plugin/jQuery_scrollClass/scrollClass.js'
   },
   output: { path: __dirname, filename: '[name].js' },
   module: {

@@ -9,13 +9,13 @@
         <h1 class ="fontSizeAuto"><?php the_title(); ?></h1>
       </div>
       <div class ="avatar row pt-lg-5 pb-2">
-        <div class ="wrap col-2 pl-3 pr-3">
+        <div class ="wrap col-2 px-3 d-md-block d-none">
           <div><?php echo get_avatar(get_the_author_meta('ID'), '140'); ?></div>
         </div>
-        <div class ="wrap col">
+        <div class ="wrap col d-md-block d-none">
           <div><?php GravatarApi('displayName') ?></div>
-          <div class ="d-lg-block d-md-block d-none pt-1 pb-1"><?php GravatarApi('aboutMe') ?></div>
-          <div class = "pt-3"><?php GravatarApi('urls') ?></div>
+          <div class ="py-1"><?php GravatarApi('aboutMe') ?></div>
+          <div class ="pt-3"><?php GravatarApi('urls') ?></div>
         </div>
      </div>
     </div>
